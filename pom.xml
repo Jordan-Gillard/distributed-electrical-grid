@@ -2,95 +2,114 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-  <artifactId>event-generators</artifactId>
-  <groupId>com.jesseyates.manning</groupId>
-  <version>1.2-SNAPSHOT</version>
+    <groupId>com.mlpteam</groupId>
+    <artifactId>event-generators</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <name>Managing a Distributed Electrical Grid with Kafka</name>
+    <url>
+        https://liveproject.manning.com/project/153/52/managing-a-distributed-electrical-grid-in-real-time-with-kafka
+    </url>
 
-    <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-    <maven.assembly.plugin.version>3.2.0</maven.assembly.plugin.version>
+    <properties>
+        <junit.version>4.12</junit.version>
+        <springboot.startertest.version>2.4.1
+        </springboot.startertest.version>
+        <okhttp3.version>4.9.0</okhttp3.version>
+        <jcommander.version>1.78</jcommander.version>
+        <lang3.version>3.11</lang3.version>
+    </properties>
 
-    <jcommander.version>1.78</jcommander.version>
-    <okhttp.version>4.5.0</okhttp.version>
-    <jackson.version>2.7.2</jackson.version>
-    <commons-lang3.version>3.10</commons-lang3.version>
-  </properties>
+    <developers>
+        <developer>
+            <id>jordan-gillard</id>
+            <name>Jordan Gillard</name>
+            <email>jordan-gillard@outlook.com</email>
+            <properties>
+                <active>true</active>
+            </properties>
+        </developer>
+        <developer>
+            <id>xu-wang-vt</id>
+            <name>Xu Wang</name>
+            <email>xu16@vt.edu</email>
+            <properties>
+                <active>true</active>
+            </properties>
+        </developer>
+    </developers>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven.compiler.plugin.version}</version>
-        <configuration>
-          <source>${maven.compiler.source}</source>
-          <target>${maven.compiler.target}</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>${maven.assembly.plugin.version}</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
-              <archive>
-                <manifest>
-                  <mainClass>event-generators.Generator</mainClass>
-                </manifest>
-              </archive>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <dependencies>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.beust</groupId>
-      <artifactId>jcommander</artifactId>
-      <version>${jcommander.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp</artifactId>
-      <version>${okhttp.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>${commons-lang3.version}</version>
-    </dependency>
+        <!--J-Unit dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+        <!--Spring Boot dependencies-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${springboot.startertest.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--okhttp3 dependency, which is used by the Event Generators-->
+        <!--https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp3.version}</version>
+        </dependency>
+
+        <!--JCommander dependency, which is used by the Event Generators-->
+        <!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>${jcommander.version}</version>
+        </dependency>
+
+        <!--Lang3 dependency, which is used by the Event Generators-->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
 </project>
