@@ -16,5 +16,5 @@ directory.
 ## Overview
 
 Our goal is to build out this system:
-![Overview of this projects infrastructure.](../../dev/energyresources/resources/ElectricSystemDiagram.jpeg)
+![Overview of this projects infrastructure.](resources/ElectricSystemDiagram.jpeg)
 
