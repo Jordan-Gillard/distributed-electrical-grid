@@ -1,4 +1,4 @@
-package com.jesseyates.manning;
+package event_generators;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
