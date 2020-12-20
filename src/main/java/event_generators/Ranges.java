@@ -1,4 +1,4 @@
-package com.jesseyates.manning;
+package event_generators;
 
 import java.util.Random;
 
