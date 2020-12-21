@@ -1,4 +1,5 @@
-{
+{ //todo: should we add nullable/default value to fields?
+
   "namespace": "avro",
   "type": "record",
   "name": "BatteryEvent",
