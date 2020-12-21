@@ -6,22 +6,22 @@ Generate realistic device and pricing events, modeled on real-world events.
 
 Show the help
 ```
- java -jar target/event-generators-0.0.1-SNAPSHOT.jar -h
- java -jar target/event-generators-0.0.1-SNAPSHOT.jar --help
+ java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  -h
+ java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  --help
 ```
 
 Run the device event generator
 
 ```
- java -jar target/event-generators-0.0.1-SNAPSHOT.jar \
+ java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  \
     events --target http://host:1234/my/path
 ````
-# TODO: update jar naming in pom.xml to not include version info.
+// TODO: update jar naming in pom.xml to not include version info.
 
 Run the pricing generator
 
 ```
- java -jar target/event-generators-0.0.1-SNAPSHOT.jar \
+ java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  \
     pricing --target http://host:1234/my/path
 ````
 

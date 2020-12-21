@@ -21,12 +21,15 @@
     </url>
 
     <properties>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
         <junit.version>4.12</junit.version>
         <springboot.startertest.version>2.4.1
         </springboot.startertest.version>
         <okhttp3.version>4.9.0</okhttp3.version>
         <jcommander.version>1.78</jcommander.version>
         <lang3.version>3.11</lang3.version>
+        <jackson.version>2.7.2</jackson.version>
     </properties>
 
     <developers>
@@ -49,7 +52,6 @@
     </developers>
 
     <dependencies>
-
         <!--J-Unit dependencies-->
         <dependency>
             <groupId>junit</groupId>
@@ -111,5 +113,62 @@
             <scope>compile</scope>
         </dependency>
 
+        <!--Plugins for Event Generator command-line app jar-->
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>${maven.assembly.plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+<!--                                    <mainClass>com.jesseyates.manning.Generator</mainClass>-->
+                                    <mainClass>event_generators.Generator</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
 </project>
