@@ -29,6 +29,7 @@
         <okhttp3.version>4.9.0</okhttp3.version>
         <jcommander.version>1.78</jcommander.version>
         <lang3.version>3.11</lang3.version>
+        <org.testing.version>7.3.0</org.testing.version>
         <jackson.version>2.7.2</jackson.version>
         <avro.version>1.10.1</avro.version>
     </properties>
@@ -110,7 +111,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>RELEASE</version>
+            <version>${org.testing.version}</version>
             <scope>compile</scope>
         </dependency>
 
