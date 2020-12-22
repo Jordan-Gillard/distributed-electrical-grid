@@ -3,12 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
     <groupId>com.mlpteam</groupId>
     <artifactId>kafka-electrical-grid</artifactId>
@@ -21,9 +15,8 @@
     </url>
 
     <modules>
-        <module>src/main/java/avro</module>
-        <module>src/main/java/energy_resources</module>
-        <module>src/main/java/event_generators</module>
+        <module>energy_resources</module>
+        <module>event_generators</module>
     </modules>
 
     <properties>
@@ -33,9 +26,7 @@
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
         <junit.version>4.12</junit.version>
-        <springboot.startertest.version>2.4.1</springboot.startertest.version>
         <org.testing.version>7.3.0</org.testing.version>
-        <avro.version>1.10.1</avro.version>
     </properties>
 
     <developers>
@@ -67,17 +58,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
