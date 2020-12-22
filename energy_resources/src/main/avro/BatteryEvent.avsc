@@ -1,5 +1,4 @@
-{ //todo: should we add nullable/default value to fields?
-
+{
   "namespace": "avro",
   "type": "record",
   "name": "BatteryEvent",
@@ -10,15 +9,11 @@
     },
     {
       "name": "charging_source",
-      "type":
-      "string"
-
+      "type": "string"
     },
     {
       "name": "current_capacity",
-      "type":
-      "int"
-
+      "type": "int"
     },
     {
       "name": "moduleL_temp",

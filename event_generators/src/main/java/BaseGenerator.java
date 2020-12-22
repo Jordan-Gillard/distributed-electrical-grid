@@ -39,7 +39,6 @@ public abstract class BaseGenerator {
         }
     }
 
-
     public void run() throws Exception {
         while (true) {
             nextEvent();

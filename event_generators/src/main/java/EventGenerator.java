@@ -33,6 +33,7 @@ public class EventGenerator extends BaseGenerator {
         }
     }
 
+
     // setup event field values
     {
         events.put("charging", new ImmutablePair<>(-1000, 1000));
@@ -48,7 +49,6 @@ public class EventGenerator extends BaseGenerator {
         events.put("inverter_state", new ImmutablePair<>(0, 15));
         events.put("SoC_regulator", new ImmutablePair<>(26.0f, 29.6f));
     }
-
 
     private static UUID randomUUID(Random r) {
         // copy the UUID logic, but use our own random

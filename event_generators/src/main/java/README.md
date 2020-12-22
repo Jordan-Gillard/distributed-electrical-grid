@@ -15,21 +15,19 @@ Run the device event generator
 
 ```
  java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  \
-    events --target http://host:1234/my/path
+    events --target http://localhost:8080/events
 ````
-
-// TODO: update jar naming in pom.xml to not include version info.
 
 Run the pricing generator
 
 ```
  java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  \
-    pricing --target http://host:1234/my/path
+    pricing --target http://localhost:8080/events
 ````
 
 Event generators can also be run with an optional `--seed` flag, that takes a
 long, to set the random seed used for generating events, enabling a
-reproducable stream of events.
+reproducible stream of events.
 
 See `--help` for more information.
 
