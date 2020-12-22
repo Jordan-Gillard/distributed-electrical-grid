@@ -1,13 +1,13 @@
-package energy_resources;
+package spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EnergyresourcesApplication {
+public class EnergyResourcesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EnergyresourcesApplication.class, args);
+		SpringApplication.run(EnergyResourcesApplication.class, args);
 	}
 
 }
