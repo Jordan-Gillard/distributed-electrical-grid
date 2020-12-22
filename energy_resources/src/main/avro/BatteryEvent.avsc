@@ -46,6 +46,11 @@
     {
       "name": "SoC_regulator",
       "type": "float"
+    },
+    {
+      "name": "time",
+      "type": ["long","null"],
+      "logicalType": "local-timestamp-millis"
     }
   ]
 }
