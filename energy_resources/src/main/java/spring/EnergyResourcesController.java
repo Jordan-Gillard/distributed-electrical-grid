@@ -1,4 +1,4 @@
-package src.main.java;
+package spring;
 
 import avro.BatteryEvent;
 import org.springframework.web.bind.annotation.PostMapping;
