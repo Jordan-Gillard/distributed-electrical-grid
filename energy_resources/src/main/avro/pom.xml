@@ -35,10 +35,10 @@
                         </goals>
                         <configuration>
                             <sourceDirectory>
-                                ${project.basedir}/src/main/avro/
+                                ${project.basedir}
                             </sourceDirectory>
                             <outputDirectory>
-                                ${project.basedir}/src/main/java/
+                                ${project.basedir}
                             </outputDirectory>
                         </configuration>
                     </execution>

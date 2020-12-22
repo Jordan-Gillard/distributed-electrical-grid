@@ -1,4 +1,4 @@
-package energy_resources;
+package src.main.java;
 
 import avro.BatteryEvent;
 import org.springframework.web.bind.annotation.PostMapping;

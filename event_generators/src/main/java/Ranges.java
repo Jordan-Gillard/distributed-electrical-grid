@@ -1,4 +1,4 @@
-package event_generators;
+package src.main.java;
 
 import java.util.Random;
 
