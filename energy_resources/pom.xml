@@ -14,6 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+
     <!-- Adds Confluent schema registry repository -->
     <repositories>
         <repository>
@@ -25,6 +26,8 @@
     <properties>
         <avro.version>1.10.1</avro.version>
         <avro.serializer.version>3.3.1</avro.serializer.version>
+        <schemaRegistryUrl>http://localhost:8081</schemaRegistryUrl>
+
     </properties>
 
     <dependencies>
@@ -64,6 +67,11 @@
             <artifactId>avro</artifactId>
             <version>${avro.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -89,6 +97,23 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <artifactId>kafka-schema-registry-maven-plugin</artifactId>
+                <version>${avro.serializer.version}</version>
+                <configuration>
+                    <schemaRegistryUrls>
+                        <param>${schemaRegistryUrl}</param>
+                    </schemaRegistryUrls>
+
+                    <subjects>
+                        <event-value>src/main/avro/BatteryEvent.avsc</event-value>
+                    </subjects>
+                </configuration>
+                <goals>
+                    <goal>test-compatibility</goal>
+                </goals>
             </plugin>
         </plugins>
     </build>
