@@ -20,6 +20,26 @@ public class BatteryEventProducer<I extends Number, G extends IndexedRecord> {
 
     public static void main(String[] args) throws IOException {
         String bootstrapServers = "127.0.0.1:9092";
+        Properties producerProps = getProducerProps(bootstrapServers);
+
+        // construct kafka producer.
+        Producer<Integer, GenericRecord> producer =
+            new KafkaProducer<>(producerProps);
+        // message key.
+        int BatteryEventIdInt = 1;
+        GenericRecord record = buildRecord();
+
+        // send avro message to the topic page-view-event.
+        producer.send(new ProducerRecord<>("battery-event", BatteryEventIdInt, record));
+
+        producer.flush();
+        // this is alternatively option to send data if this is the end of sending data
+        producer.close();
+    }
+
+
+    @org.jetbrains.annotations.NotNull
+    private static Properties getProducerProps(String bootstrapServers) {
         Properties producerProps = new Properties();
         producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
             bootstrapServers);
@@ -28,22 +48,7 @@ public class BatteryEventProducer<I extends Number, G extends IndexedRecord> {
         producerProps.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
             "io.confluent.kafka.serializers.KafkaAvroSerializer");
         producerProps.put(ProducerConfig.ACKS_CONFIG, "1");
-
-        // construct kafka producer.
-        Producer<Integer, GenericRecord> producer =
-            new KafkaProducer<Integer, GenericRecord>(producerProps);
-        // message key.
-        int BatteryEventIdInt = 1;
-        GenericRecord record = buildRecord();
-
-        // send avro message to the topic page-view-event.
-        producer.send(
-            new ProducerRecord<Integer, GenericRecord>("battery-event",
-                BatteryEventIdInt, record));
-
-        producer.flush();
-        // this is alternatively option to send data if this is the end of sending data
-        producer.close();
+        return producerProps;
     }
 
 
