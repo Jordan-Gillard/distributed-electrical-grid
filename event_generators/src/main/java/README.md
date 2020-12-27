@@ -15,14 +15,14 @@ Run the device event generator
 
 ```
  java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  \
-    events --target http://localhost:8080/events
+    events --target http://localhost:8080/event
 ````
 
 Run the pricing generator
 
 ```
  java -jar target/event-generators-0.0.1-SNAPSHOT-jar-with-dependencies.jar  \
-    pricing --target http://localhost:8080/events
+    pricing --target http://localhost:8080/event
 ````
 
 Event generators can also be run with an optional `--seed` flag, that takes a
