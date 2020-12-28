@@ -9,3 +9,9 @@ kafka-topics.sh --bootstrap-server localhost:9092 --topic battery_event --create
 ```
 Make sure you have Zookeeper and Kafka running or else the previous command
 will not work.
+
+### Create a Consumer of Kafka serve
+Create a consumer without specifying group
+```shell
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic battery_event
+```

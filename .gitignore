@@ -52,3 +52,5 @@ buildNumber.properties
 *.zip
 *.tar.gz
 *.rar
+
+event_generators/events
