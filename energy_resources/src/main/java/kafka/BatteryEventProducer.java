@@ -59,7 +59,7 @@ public class BatteryEventProducer {
         throws IOException {
         //  IOUtils ioUtils = new IOUtils();
         // avro schema avsc file path.
-        String schemaPath = "src/main/resources/avro/BatteryEvent.avsc";
+        String schemaPath = "energy_resources/src/main/resources/avro/BatteryEvent.avsc";
         // avsc json string.
         String schemaString = null;
 
