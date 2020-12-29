@@ -15,12 +15,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class BatteryEventProducer {
 
     public static void produce(BatteryEvent batteryEvent) throws IOException {
-
-        final String bootstrapServers = "localhost:29092";
+        Logger logger = Logger.getLogger("Battery Event Producer");
+        final String bootstrapServers = "0.0.0.0:29092";
 
         // Create producer properties
         Properties properties = new Properties();
@@ -30,7 +31,7 @@ public class BatteryEventProducer {
             .put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
             io.confluent.kafka.serializers.KafkaAvroSerializer.class);
-        properties.put("schema.registry.url", "http://localhost:8081");
+        properties.put("schema.registry.url", "http://0.0.0.0:8090");
         // create the producer
         Producer producer = new KafkaProducer(properties);
 
@@ -41,17 +42,17 @@ public class BatteryEventProducer {
             new ProducerRecord<>("battery_event", avroRecord);
         try {
             producer.send(record);
+            logger.info("IT FUCKING WORKED!");
         }
         catch (SerializationException e) {
             // may need to do something with it
         }
-// When you're finished producing records, you can flush the producer to ensure it has all been written to Kafka and
-// then close the producer to free its resources.
+        // When you're finished producing records, you can flush the producer to ensure it has all been written to Kafka and
+        // then close the producer to free its resources.
         finally {
             producer.flush();
             producer.close();
         }
-
     }
 
 
@@ -59,7 +60,8 @@ public class BatteryEventProducer {
         throws IOException {
         //  IOUtils ioUtils = new IOUtils();
         // avro schema avsc file path.
-        String schemaPath = "energy_resources/src/main/resources/avro/BatteryEvent.avsc";
+        String schemaPath =
+            "energy_resources/src/main/resources/avro/BatteryEvent.avsc";
         // avsc json string.
         String schemaString = null;
 

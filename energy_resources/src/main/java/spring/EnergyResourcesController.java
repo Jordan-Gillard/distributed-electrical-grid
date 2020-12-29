@@ -22,7 +22,7 @@ public class EnergyResourcesController {
     public void handlePostEvent(
         @PathVariable("uuid") String uuid,
         BatteryEvent batteryEvent) throws IOException {
-        System.out.printf("Event Received: %s", batteryEvent);
+        // TODO: Figure out why battery event is all 0s
         batteryEvent.setTime(date.getTime());
         BatteryEventProducer.produce(batteryEvent);
     }
