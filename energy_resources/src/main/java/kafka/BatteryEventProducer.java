@@ -15,13 +15,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BatteryEventProducer {
 
     public static void produce(BatteryEvent batteryEvent) throws IOException {
         Logger logger = Logger.getLogger("Battery Event Producer");
-        final String bootstrapServers = "0.0.0.0:29092";
+        final String bootstrapServers = "0.0.0.0:9092";
 
         // Create producer properties
         Properties properties = new Properties();
@@ -31,7 +32,7 @@ public class BatteryEventProducer {
             .put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
             io.confluent.kafka.serializers.KafkaAvroSerializer.class);
-        properties.put("schema.registry.url", "http://0.0.0.0:8090");
+        properties.put("schema.registry.url", "http://0.0.0.0:8081");
         // create the producer
         Producer producer = new KafkaProducer(properties);
 
@@ -39,13 +40,14 @@ public class BatteryEventProducer {
         GenericRecord avroRecord = buildRecord(batteryEvent);
 
         ProducerRecord<Object, Object> record =
-            new ProducerRecord<>("battery_event", avroRecord);
+            new ProducerRecord<>("battery_event", 1, avroRecord);
         try {
             producer.send(record);
             logger.info("IT FUCKING WORKED!");
         }
-        catch (SerializationException e) {
+        catch (Exception e) {
             // may need to do something with it
+            logger.log(Level.WARNING,e.toString());
         }
         // When you're finished producing records, you can flush the producer to ensure it has all been written to Kafka and
         // then close the producer to free its resources.
@@ -58,6 +60,7 @@ public class BatteryEventProducer {
 
     public static GenericRecord buildRecord(BatteryEvent batteryEvent)
         throws IOException {
+        Logger logger = Logger.getLogger("Battery Event Producer");
         //  IOUtils ioUtils = new IOUtils();
         // avro schema avsc file path.
         String schemaPath =
@@ -69,6 +72,9 @@ public class BatteryEventProducer {
         try {
             schemaString =
                 IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+        }
+        catch (Exception e){
+            logger.log(Level.WARNING,e.toString());
         }
         finally {
             inputStream.close();
