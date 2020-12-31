@@ -1,0 +1,14 @@
+{
+  "charging_source": "solar",
+  "processor4_temp": 79,
+  "device_id": "52a9351a-7030-434d-932c-dd0fe4d3b052",
+  "processor2_temp": 175,
+  "processor1_temp": 136,
+  "charging": -261,
+  "current_capacity": 6329,
+  "inverter_state": 6,
+  "moduleL_temp": 82,
+  "moduleR_temp": 179,
+  "processor3_temp": 85,
+  "soC_regulator": 28.63366
+}
