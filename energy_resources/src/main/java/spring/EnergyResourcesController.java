@@ -1,6 +1,7 @@
 package spring;
 
 import avro.BatteryEvent;
+import kafka.BatteryEventProducer;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class EnergyResourcesController {
         @PathVariable("uuid") String uuid,
         @RequestBody BatteryEvent batteryEvent) throws IOException {
         batteryEvent.setTime(date.getTime());
-//        BatteryEventProducer.produce(batteryEvent);
+        BatteryEventProducer.produce(batteryEvent);
         return batteryEvent;
     }
 }
