@@ -1,13 +1,10 @@
 import avro.BatteryEvent;
 import kafka.BatteryEventProducer;
-import org.apache.avro.generic.GenericRecord;
 import org.junit.jupiter.api.Test;
-import spring.EnergyResourcesController;
 
 import java.io.IOException;
 
-public class TestBatteryEventProducer {
-
+public class BatteryEventProducerTest {
 
     @Test
     public void testBuildRecordDoesNotThrowError() throws IOException {

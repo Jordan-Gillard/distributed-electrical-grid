@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6284867275237254357L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"BatteryEvent\",\"namespace\":\"avro\",\"fields\":[{\"name\":\"charging\",\"type\":\"int\"},{\"name\":\"charging_source\",\"type\":\"string\"},{\"name\":\"current_capacity\",\"type\":\"int\"},{\"name\":\"moduleL_temp\",\"type\":\"int\"},{\"name\":\"moduleR_temp\",\"type\":\"int\"},{\"name\":\"processor1_temp\",\"type\":\"int\"},{\"name\":\"processor2_temp\",\"type\":\"int\"},{\"name\":\"processor3_temp\",\"type\":\"int\"},{\"name\":\"processor4_temp\",\"type\":\"int\"},{\"name\":\"inverter_state\",\"type\":\"int\"},{\"name\":\"SoC_regulator\",\"type\":\"float\"},{\"name\":\"time\",\"type\":[\"long\",\"null\"],\"logicalType\":\"local-timestamp-millis\"}]}");
+  private static final long serialVersionUID = -6455525538299807003L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"BatteryEvent\",\"namespace\":\"avro\",\"fields\":[{\"name\":\"charging_source\",\"type\":[\"string\",\"null\"]},{\"name\":\"processor4_temp\",\"type\":[\"int\",\"null\"]},{\"name\":\"device_id\",\"type\":[\"string\",\"null\"]},{\"name\":\"processor2_temp\",\"type\":[\"int\",\"null\"]},{\"name\":\"processor1_temp\",\"type\":[\"int\",\"null\"]},{\"name\":\"charging\",\"type\":[\"int\",\"null\"]},{\"name\":\"current_capacity\",\"type\":[\"int\",\"null\"]},{\"name\":\"inverter_state\",\"type\":[\"int\",\"null\"]},{\"name\":\"moduleL_temp\",\"type\":[\"int\",\"null\"]},{\"name\":\"moduleR_temp\",\"type\":[\"int\",\"null\"]},{\"name\":\"processor3_temp\",\"type\":[\"int\",\"null\"]},{\"name\":\"soC_regulator\",\"type\":[\"float\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"],\"logicalType\":\"local-timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,17 +71,18 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
     return DECODER.decode(b);
   }
 
-   private int charging;
    private java.lang.CharSequence charging_source;
-   private int current_capacity;
-   private int moduleL_temp;
-   private int moduleR_temp;
-   private int processor1_temp;
-   private int processor2_temp;
-   private int processor3_temp;
-   private int processor4_temp;
-   private int inverter_state;
-   private float SoC_regulator;
+   private java.lang.Integer processor4_temp;
+   private java.lang.CharSequence device_id;
+   private java.lang.Integer processor2_temp;
+   private java.lang.Integer processor1_temp;
+   private java.lang.Integer charging;
+   private java.lang.Integer current_capacity;
+   private java.lang.Integer inverter_state;
+   private java.lang.Integer moduleL_temp;
+   private java.lang.Integer moduleR_temp;
+   private java.lang.Integer processor3_temp;
+   private java.lang.Float soC_regulator;
    private java.lang.Long time;
 
   /**
@@ -93,31 +94,33 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * All-args constructor.
-   * @param charging The new value for charging
    * @param charging_source The new value for charging_source
+   * @param processor4_temp The new value for processor4_temp
+   * @param device_id The new value for device_id
+   * @param processor2_temp The new value for processor2_temp
+   * @param processor1_temp The new value for processor1_temp
+   * @param charging The new value for charging
    * @param current_capacity The new value for current_capacity
+   * @param inverter_state The new value for inverter_state
    * @param moduleL_temp The new value for moduleL_temp
    * @param moduleR_temp The new value for moduleR_temp
-   * @param processor1_temp The new value for processor1_temp
-   * @param processor2_temp The new value for processor2_temp
    * @param processor3_temp The new value for processor3_temp
-   * @param processor4_temp The new value for processor4_temp
-   * @param inverter_state The new value for inverter_state
-   * @param SoC_regulator The new value for SoC_regulator
+   * @param soC_regulator The new value for soC_regulator
    * @param time The new value for time
    */
-  public BatteryEvent(java.lang.Integer charging, java.lang.CharSequence charging_source, java.lang.Integer current_capacity, java.lang.Integer moduleL_temp, java.lang.Integer moduleR_temp, java.lang.Integer processor1_temp, java.lang.Integer processor2_temp, java.lang.Integer processor3_temp, java.lang.Integer processor4_temp, java.lang.Integer inverter_state, java.lang.Float SoC_regulator, java.lang.Long time) {
-    this.charging = charging;
+  public BatteryEvent(java.lang.CharSequence charging_source, java.lang.Integer processor4_temp, java.lang.CharSequence device_id, java.lang.Integer processor2_temp, java.lang.Integer processor1_temp, java.lang.Integer charging, java.lang.Integer current_capacity, java.lang.Integer inverter_state, java.lang.Integer moduleL_temp, java.lang.Integer moduleR_temp, java.lang.Integer processor3_temp, java.lang.Float soC_regulator, java.lang.Long time) {
     this.charging_source = charging_source;
+    this.processor4_temp = processor4_temp;
+    this.device_id = device_id;
+    this.processor2_temp = processor2_temp;
+    this.processor1_temp = processor1_temp;
+    this.charging = charging;
     this.current_capacity = current_capacity;
+    this.inverter_state = inverter_state;
     this.moduleL_temp = moduleL_temp;
     this.moduleR_temp = moduleR_temp;
-    this.processor1_temp = processor1_temp;
-    this.processor2_temp = processor2_temp;
     this.processor3_temp = processor3_temp;
-    this.processor4_temp = processor4_temp;
-    this.inverter_state = inverter_state;
-    this.SoC_regulator = SoC_regulator;
+    this.soC_regulator = soC_regulator;
     this.time = time;
   }
 
@@ -126,18 +129,19 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return charging;
-    case 1: return charging_source;
-    case 2: return current_capacity;
-    case 3: return moduleL_temp;
-    case 4: return moduleR_temp;
-    case 5: return processor1_temp;
-    case 6: return processor2_temp;
-    case 7: return processor3_temp;
-    case 8: return processor4_temp;
-    case 9: return inverter_state;
-    case 10: return SoC_regulator;
-    case 11: return time;
+    case 0: return charging_source;
+    case 1: return processor4_temp;
+    case 2: return device_id;
+    case 3: return processor2_temp;
+    case 4: return processor1_temp;
+    case 5: return charging;
+    case 6: return current_capacity;
+    case 7: return inverter_state;
+    case 8: return moduleL_temp;
+    case 9: return moduleR_temp;
+    case 10: return processor3_temp;
+    case 11: return soC_regulator;
+    case 12: return time;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -146,37 +150,21 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: charging = (java.lang.Integer)value$; break;
-    case 1: charging_source = (java.lang.CharSequence)value$; break;
-    case 2: current_capacity = (java.lang.Integer)value$; break;
-    case 3: moduleL_temp = (java.lang.Integer)value$; break;
-    case 4: moduleR_temp = (java.lang.Integer)value$; break;
-    case 5: processor1_temp = (java.lang.Integer)value$; break;
-    case 6: processor2_temp = (java.lang.Integer)value$; break;
-    case 7: processor3_temp = (java.lang.Integer)value$; break;
-    case 8: processor4_temp = (java.lang.Integer)value$; break;
-    case 9: inverter_state = (java.lang.Integer)value$; break;
-    case 10: SoC_regulator = (java.lang.Float)value$; break;
-    case 11: time = (java.lang.Long)value$; break;
+    case 0: charging_source = (java.lang.CharSequence)value$; break;
+    case 1: processor4_temp = (java.lang.Integer)value$; break;
+    case 2: device_id = (java.lang.CharSequence)value$; break;
+    case 3: processor2_temp = (java.lang.Integer)value$; break;
+    case 4: processor1_temp = (java.lang.Integer)value$; break;
+    case 5: charging = (java.lang.Integer)value$; break;
+    case 6: current_capacity = (java.lang.Integer)value$; break;
+    case 7: inverter_state = (java.lang.Integer)value$; break;
+    case 8: moduleL_temp = (java.lang.Integer)value$; break;
+    case 9: moduleR_temp = (java.lang.Integer)value$; break;
+    case 10: processor3_temp = (java.lang.Integer)value$; break;
+    case 11: soC_regulator = (java.lang.Float)value$; break;
+    case 12: time = (java.lang.Long)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
-  }
-
-  /**
-   * Gets the value of the 'charging' field.
-   * @return The value of the 'charging' field.
-   */
-  public int getCharging() {
-    return charging;
-  }
-
-
-  /**
-   * Sets the value of the 'charging' field.
-   * @param value the value to set.
-   */
-  public void setCharging(int value) {
-    this.charging = value;
   }
 
   /**
@@ -197,112 +185,10 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /**
-   * Gets the value of the 'current_capacity' field.
-   * @return The value of the 'current_capacity' field.
-   */
-  public int getCurrentCapacity() {
-    return current_capacity;
-  }
-
-
-  /**
-   * Sets the value of the 'current_capacity' field.
-   * @param value the value to set.
-   */
-  public void setCurrentCapacity(int value) {
-    this.current_capacity = value;
-  }
-
-  /**
-   * Gets the value of the 'moduleL_temp' field.
-   * @return The value of the 'moduleL_temp' field.
-   */
-  public int getModuleLTemp() {
-    return moduleL_temp;
-  }
-
-
-  /**
-   * Sets the value of the 'moduleL_temp' field.
-   * @param value the value to set.
-   */
-  public void setModuleLTemp(int value) {
-    this.moduleL_temp = value;
-  }
-
-  /**
-   * Gets the value of the 'moduleR_temp' field.
-   * @return The value of the 'moduleR_temp' field.
-   */
-  public int getModuleRTemp() {
-    return moduleR_temp;
-  }
-
-
-  /**
-   * Sets the value of the 'moduleR_temp' field.
-   * @param value the value to set.
-   */
-  public void setModuleRTemp(int value) {
-    this.moduleR_temp = value;
-  }
-
-  /**
-   * Gets the value of the 'processor1_temp' field.
-   * @return The value of the 'processor1_temp' field.
-   */
-  public int getProcessor1Temp() {
-    return processor1_temp;
-  }
-
-
-  /**
-   * Sets the value of the 'processor1_temp' field.
-   * @param value the value to set.
-   */
-  public void setProcessor1Temp(int value) {
-    this.processor1_temp = value;
-  }
-
-  /**
-   * Gets the value of the 'processor2_temp' field.
-   * @return The value of the 'processor2_temp' field.
-   */
-  public int getProcessor2Temp() {
-    return processor2_temp;
-  }
-
-
-  /**
-   * Sets the value of the 'processor2_temp' field.
-   * @param value the value to set.
-   */
-  public void setProcessor2Temp(int value) {
-    this.processor2_temp = value;
-  }
-
-  /**
-   * Gets the value of the 'processor3_temp' field.
-   * @return The value of the 'processor3_temp' field.
-   */
-  public int getProcessor3Temp() {
-    return processor3_temp;
-  }
-
-
-  /**
-   * Sets the value of the 'processor3_temp' field.
-   * @param value the value to set.
-   */
-  public void setProcessor3Temp(int value) {
-    this.processor3_temp = value;
-  }
-
-  /**
    * Gets the value of the 'processor4_temp' field.
    * @return The value of the 'processor4_temp' field.
    */
-  public int getProcessor4Temp() {
+  public java.lang.Integer getProcessor4Temp() {
     return processor4_temp;
   }
 
@@ -311,15 +197,100 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'processor4_temp' field.
    * @param value the value to set.
    */
-  public void setProcessor4Temp(int value) {
+  public void setProcessor4Temp(java.lang.Integer value) {
     this.processor4_temp = value;
+  }
+
+  /**
+   * Gets the value of the 'device_id' field.
+   * @return The value of the 'device_id' field.
+   */
+  public java.lang.CharSequence getDeviceId() {
+    return device_id;
+  }
+
+
+  /**
+   * Sets the value of the 'device_id' field.
+   * @param value the value to set.
+   */
+  public void setDeviceId(java.lang.CharSequence value) {
+    this.device_id = value;
+  }
+
+  /**
+   * Gets the value of the 'processor2_temp' field.
+   * @return The value of the 'processor2_temp' field.
+   */
+  public java.lang.Integer getProcessor2Temp() {
+    return processor2_temp;
+  }
+
+
+  /**
+   * Sets the value of the 'processor2_temp' field.
+   * @param value the value to set.
+   */
+  public void setProcessor2Temp(java.lang.Integer value) {
+    this.processor2_temp = value;
+  }
+
+  /**
+   * Gets the value of the 'processor1_temp' field.
+   * @return The value of the 'processor1_temp' field.
+   */
+  public java.lang.Integer getProcessor1Temp() {
+    return processor1_temp;
+  }
+
+
+  /**
+   * Sets the value of the 'processor1_temp' field.
+   * @param value the value to set.
+   */
+  public void setProcessor1Temp(java.lang.Integer value) {
+    this.processor1_temp = value;
+  }
+
+  /**
+   * Gets the value of the 'charging' field.
+   * @return The value of the 'charging' field.
+   */
+  public java.lang.Integer getCharging() {
+    return charging;
+  }
+
+
+  /**
+   * Sets the value of the 'charging' field.
+   * @param value the value to set.
+   */
+  public void setCharging(java.lang.Integer value) {
+    this.charging = value;
+  }
+
+  /**
+   * Gets the value of the 'current_capacity' field.
+   * @return The value of the 'current_capacity' field.
+   */
+  public java.lang.Integer getCurrentCapacity() {
+    return current_capacity;
+  }
+
+
+  /**
+   * Sets the value of the 'current_capacity' field.
+   * @param value the value to set.
+   */
+  public void setCurrentCapacity(java.lang.Integer value) {
+    this.current_capacity = value;
   }
 
   /**
    * Gets the value of the 'inverter_state' field.
    * @return The value of the 'inverter_state' field.
    */
-  public int getInverterState() {
+  public java.lang.Integer getInverterState() {
     return inverter_state;
   }
 
@@ -328,25 +299,76 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'inverter_state' field.
    * @param value the value to set.
    */
-  public void setInverterState(int value) {
+  public void setInverterState(java.lang.Integer value) {
     this.inverter_state = value;
   }
 
   /**
-   * Gets the value of the 'SoC_regulator' field.
-   * @return The value of the 'SoC_regulator' field.
+   * Gets the value of the 'moduleL_temp' field.
+   * @return The value of the 'moduleL_temp' field.
    */
-  public float getSoCRegulator() {
-    return SoC_regulator;
+  public java.lang.Integer getModuleLTemp() {
+    return moduleL_temp;
   }
 
 
   /**
-   * Sets the value of the 'SoC_regulator' field.
+   * Sets the value of the 'moduleL_temp' field.
    * @param value the value to set.
    */
-  public void setSoCRegulator(float value) {
-    this.SoC_regulator = value;
+  public void setModuleLTemp(java.lang.Integer value) {
+    this.moduleL_temp = value;
+  }
+
+  /**
+   * Gets the value of the 'moduleR_temp' field.
+   * @return The value of the 'moduleR_temp' field.
+   */
+  public java.lang.Integer getModuleRTemp() {
+    return moduleR_temp;
+  }
+
+
+  /**
+   * Sets the value of the 'moduleR_temp' field.
+   * @param value the value to set.
+   */
+  public void setModuleRTemp(java.lang.Integer value) {
+    this.moduleR_temp = value;
+  }
+
+  /**
+   * Gets the value of the 'processor3_temp' field.
+   * @return The value of the 'processor3_temp' field.
+   */
+  public java.lang.Integer getProcessor3Temp() {
+    return processor3_temp;
+  }
+
+
+  /**
+   * Sets the value of the 'processor3_temp' field.
+   * @param value the value to set.
+   */
+  public void setProcessor3Temp(java.lang.Integer value) {
+    this.processor3_temp = value;
+  }
+
+  /**
+   * Gets the value of the 'soC_regulator' field.
+   * @return The value of the 'soC_regulator' field.
+   */
+  public java.lang.Float getSoCRegulator() {
+    return soC_regulator;
+  }
+
+
+  /**
+   * Sets the value of the 'soC_regulator' field.
+   * @param value the value to set.
+   */
+  public void setSoCRegulator(java.lang.Float value) {
+    this.soC_regulator = value;
   }
 
   /**
@@ -407,17 +429,18 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<BatteryEvent>
     implements org.apache.avro.data.RecordBuilder<BatteryEvent> {
 
-    private int charging;
     private java.lang.CharSequence charging_source;
-    private int current_capacity;
-    private int moduleL_temp;
-    private int moduleR_temp;
-    private int processor1_temp;
-    private int processor2_temp;
-    private int processor3_temp;
-    private int processor4_temp;
-    private int inverter_state;
-    private float SoC_regulator;
+    private java.lang.Integer processor4_temp;
+    private java.lang.CharSequence device_id;
+    private java.lang.Integer processor2_temp;
+    private java.lang.Integer processor1_temp;
+    private java.lang.Integer charging;
+    private java.lang.Integer current_capacity;
+    private java.lang.Integer inverter_state;
+    private java.lang.Integer moduleL_temp;
+    private java.lang.Integer moduleR_temp;
+    private java.lang.Integer processor3_temp;
+    private java.lang.Float soC_regulator;
     private java.lang.Long time;
 
     /** Creates a new Builder */
@@ -431,53 +454,57 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
      */
     private Builder(avro.BatteryEvent.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.charging)) {
-        this.charging = data().deepCopy(fields()[0].schema(), other.charging);
+      if (isValidValue(fields()[0], other.charging_source)) {
+        this.charging_source = data().deepCopy(fields()[0].schema(), other.charging_source);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.charging_source)) {
-        this.charging_source = data().deepCopy(fields()[1].schema(), other.charging_source);
+      if (isValidValue(fields()[1], other.processor4_temp)) {
+        this.processor4_temp = data().deepCopy(fields()[1].schema(), other.processor4_temp);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.current_capacity)) {
-        this.current_capacity = data().deepCopy(fields()[2].schema(), other.current_capacity);
+      if (isValidValue(fields()[2], other.device_id)) {
+        this.device_id = data().deepCopy(fields()[2].schema(), other.device_id);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.moduleL_temp)) {
-        this.moduleL_temp = data().deepCopy(fields()[3].schema(), other.moduleL_temp);
+      if (isValidValue(fields()[3], other.processor2_temp)) {
+        this.processor2_temp = data().deepCopy(fields()[3].schema(), other.processor2_temp);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
-      if (isValidValue(fields()[4], other.moduleR_temp)) {
-        this.moduleR_temp = data().deepCopy(fields()[4].schema(), other.moduleR_temp);
+      if (isValidValue(fields()[4], other.processor1_temp)) {
+        this.processor1_temp = data().deepCopy(fields()[4].schema(), other.processor1_temp);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (isValidValue(fields()[5], other.processor1_temp)) {
-        this.processor1_temp = data().deepCopy(fields()[5].schema(), other.processor1_temp);
+      if (isValidValue(fields()[5], other.charging)) {
+        this.charging = data().deepCopy(fields()[5].schema(), other.charging);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.processor2_temp)) {
-        this.processor2_temp = data().deepCopy(fields()[6].schema(), other.processor2_temp);
+      if (isValidValue(fields()[6], other.current_capacity)) {
+        this.current_capacity = data().deepCopy(fields()[6].schema(), other.current_capacity);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
-      if (isValidValue(fields()[7], other.processor3_temp)) {
-        this.processor3_temp = data().deepCopy(fields()[7].schema(), other.processor3_temp);
+      if (isValidValue(fields()[7], other.inverter_state)) {
+        this.inverter_state = data().deepCopy(fields()[7].schema(), other.inverter_state);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.processor4_temp)) {
-        this.processor4_temp = data().deepCopy(fields()[8].schema(), other.processor4_temp);
+      if (isValidValue(fields()[8], other.moduleL_temp)) {
+        this.moduleL_temp = data().deepCopy(fields()[8].schema(), other.moduleL_temp);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
       }
-      if (isValidValue(fields()[9], other.inverter_state)) {
-        this.inverter_state = data().deepCopy(fields()[9].schema(), other.inverter_state);
+      if (isValidValue(fields()[9], other.moduleR_temp)) {
+        this.moduleR_temp = data().deepCopy(fields()[9].schema(), other.moduleR_temp);
         fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
-      if (isValidValue(fields()[10], other.SoC_regulator)) {
-        this.SoC_regulator = data().deepCopy(fields()[10].schema(), other.SoC_regulator);
+      if (isValidValue(fields()[10], other.processor3_temp)) {
+        this.processor3_temp = data().deepCopy(fields()[10].schema(), other.processor3_temp);
         fieldSetFlags()[10] = other.fieldSetFlags()[10];
       }
-      if (isValidValue(fields()[11], other.time)) {
-        this.time = data().deepCopy(fields()[11].schema(), other.time);
+      if (isValidValue(fields()[11], other.soC_regulator)) {
+        this.soC_regulator = data().deepCopy(fields()[11].schema(), other.soC_regulator);
         fieldSetFlags()[11] = other.fieldSetFlags()[11];
+      }
+      if (isValidValue(fields()[12], other.time)) {
+        this.time = data().deepCopy(fields()[12].schema(), other.time);
+        fieldSetFlags()[12] = other.fieldSetFlags()[12];
       }
     }
 
@@ -487,93 +514,58 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
      */
     private Builder(avro.BatteryEvent other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.charging)) {
-        this.charging = data().deepCopy(fields()[0].schema(), other.charging);
+      if (isValidValue(fields()[0], other.charging_source)) {
+        this.charging_source = data().deepCopy(fields()[0].schema(), other.charging_source);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.charging_source)) {
-        this.charging_source = data().deepCopy(fields()[1].schema(), other.charging_source);
+      if (isValidValue(fields()[1], other.processor4_temp)) {
+        this.processor4_temp = data().deepCopy(fields()[1].schema(), other.processor4_temp);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.current_capacity)) {
-        this.current_capacity = data().deepCopy(fields()[2].schema(), other.current_capacity);
+      if (isValidValue(fields()[2], other.device_id)) {
+        this.device_id = data().deepCopy(fields()[2].schema(), other.device_id);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.moduleL_temp)) {
-        this.moduleL_temp = data().deepCopy(fields()[3].schema(), other.moduleL_temp);
+      if (isValidValue(fields()[3], other.processor2_temp)) {
+        this.processor2_temp = data().deepCopy(fields()[3].schema(), other.processor2_temp);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.moduleR_temp)) {
-        this.moduleR_temp = data().deepCopy(fields()[4].schema(), other.moduleR_temp);
+      if (isValidValue(fields()[4], other.processor1_temp)) {
+        this.processor1_temp = data().deepCopy(fields()[4].schema(), other.processor1_temp);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.processor1_temp)) {
-        this.processor1_temp = data().deepCopy(fields()[5].schema(), other.processor1_temp);
+      if (isValidValue(fields()[5], other.charging)) {
+        this.charging = data().deepCopy(fields()[5].schema(), other.charging);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.processor2_temp)) {
-        this.processor2_temp = data().deepCopy(fields()[6].schema(), other.processor2_temp);
+      if (isValidValue(fields()[6], other.current_capacity)) {
+        this.current_capacity = data().deepCopy(fields()[6].schema(), other.current_capacity);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.processor3_temp)) {
-        this.processor3_temp = data().deepCopy(fields()[7].schema(), other.processor3_temp);
+      if (isValidValue(fields()[7], other.inverter_state)) {
+        this.inverter_state = data().deepCopy(fields()[7].schema(), other.inverter_state);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.processor4_temp)) {
-        this.processor4_temp = data().deepCopy(fields()[8].schema(), other.processor4_temp);
+      if (isValidValue(fields()[8], other.moduleL_temp)) {
+        this.moduleL_temp = data().deepCopy(fields()[8].schema(), other.moduleL_temp);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.inverter_state)) {
-        this.inverter_state = data().deepCopy(fields()[9].schema(), other.inverter_state);
+      if (isValidValue(fields()[9], other.moduleR_temp)) {
+        this.moduleR_temp = data().deepCopy(fields()[9].schema(), other.moduleR_temp);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.SoC_regulator)) {
-        this.SoC_regulator = data().deepCopy(fields()[10].schema(), other.SoC_regulator);
+      if (isValidValue(fields()[10], other.processor3_temp)) {
+        this.processor3_temp = data().deepCopy(fields()[10].schema(), other.processor3_temp);
         fieldSetFlags()[10] = true;
       }
-      if (isValidValue(fields()[11], other.time)) {
-        this.time = data().deepCopy(fields()[11].schema(), other.time);
+      if (isValidValue(fields()[11], other.soC_regulator)) {
+        this.soC_regulator = data().deepCopy(fields()[11].schema(), other.soC_regulator);
         fieldSetFlags()[11] = true;
       }
-    }
-
-    /**
-      * Gets the value of the 'charging' field.
-      * @return The value.
-      */
-    public int getCharging() {
-      return charging;
-    }
-
-
-    /**
-      * Sets the value of the 'charging' field.
-      * @param value The value of 'charging'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setCharging(int value) {
-      validate(fields()[0], value);
-      this.charging = value;
-      fieldSetFlags()[0] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'charging' field has been set.
-      * @return True if the 'charging' field has been set, false otherwise.
-      */
-    public boolean hasCharging() {
-      return fieldSetFlags()[0];
-    }
-
-
-    /**
-      * Clears the value of the 'charging' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearCharging() {
-      fieldSetFlags()[0] = false;
-      return this;
+      if (isValidValue(fields()[12], other.time)) {
+        this.time = data().deepCopy(fields()[12].schema(), other.time);
+        fieldSetFlags()[12] = true;
+      }
     }
 
     /**
@@ -591,9 +583,9 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return This builder.
       */
     public avro.BatteryEvent.Builder setChargingSource(java.lang.CharSequence value) {
-      validate(fields()[1], value);
+      validate(fields()[0], value);
       this.charging_source = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[0] = true;
       return this;
     }
 
@@ -602,7 +594,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return True if the 'charging_source' field has been set, false otherwise.
       */
     public boolean hasChargingSource() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[0];
     }
 
 
@@ -612,241 +604,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       */
     public avro.BatteryEvent.Builder clearChargingSource() {
       charging_source = null;
-      fieldSetFlags()[1] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'current_capacity' field.
-      * @return The value.
-      */
-    public int getCurrentCapacity() {
-      return current_capacity;
-    }
-
-
-    /**
-      * Sets the value of the 'current_capacity' field.
-      * @param value The value of 'current_capacity'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setCurrentCapacity(int value) {
-      validate(fields()[2], value);
-      this.current_capacity = value;
-      fieldSetFlags()[2] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'current_capacity' field has been set.
-      * @return True if the 'current_capacity' field has been set, false otherwise.
-      */
-    public boolean hasCurrentCapacity() {
-      return fieldSetFlags()[2];
-    }
-
-
-    /**
-      * Clears the value of the 'current_capacity' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearCurrentCapacity() {
-      fieldSetFlags()[2] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'moduleL_temp' field.
-      * @return The value.
-      */
-    public int getModuleLTemp() {
-      return moduleL_temp;
-    }
-
-
-    /**
-      * Sets the value of the 'moduleL_temp' field.
-      * @param value The value of 'moduleL_temp'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setModuleLTemp(int value) {
-      validate(fields()[3], value);
-      this.moduleL_temp = value;
-      fieldSetFlags()[3] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'moduleL_temp' field has been set.
-      * @return True if the 'moduleL_temp' field has been set, false otherwise.
-      */
-    public boolean hasModuleLTemp() {
-      return fieldSetFlags()[3];
-    }
-
-
-    /**
-      * Clears the value of the 'moduleL_temp' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearModuleLTemp() {
-      fieldSetFlags()[3] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'moduleR_temp' field.
-      * @return The value.
-      */
-    public int getModuleRTemp() {
-      return moduleR_temp;
-    }
-
-
-    /**
-      * Sets the value of the 'moduleR_temp' field.
-      * @param value The value of 'moduleR_temp'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setModuleRTemp(int value) {
-      validate(fields()[4], value);
-      this.moduleR_temp = value;
-      fieldSetFlags()[4] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'moduleR_temp' field has been set.
-      * @return True if the 'moduleR_temp' field has been set, false otherwise.
-      */
-    public boolean hasModuleRTemp() {
-      return fieldSetFlags()[4];
-    }
-
-
-    /**
-      * Clears the value of the 'moduleR_temp' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearModuleRTemp() {
-      fieldSetFlags()[4] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'processor1_temp' field.
-      * @return The value.
-      */
-    public int getProcessor1Temp() {
-      return processor1_temp;
-    }
-
-
-    /**
-      * Sets the value of the 'processor1_temp' field.
-      * @param value The value of 'processor1_temp'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setProcessor1Temp(int value) {
-      validate(fields()[5], value);
-      this.processor1_temp = value;
-      fieldSetFlags()[5] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'processor1_temp' field has been set.
-      * @return True if the 'processor1_temp' field has been set, false otherwise.
-      */
-    public boolean hasProcessor1Temp() {
-      return fieldSetFlags()[5];
-    }
-
-
-    /**
-      * Clears the value of the 'processor1_temp' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearProcessor1Temp() {
-      fieldSetFlags()[5] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'processor2_temp' field.
-      * @return The value.
-      */
-    public int getProcessor2Temp() {
-      return processor2_temp;
-    }
-
-
-    /**
-      * Sets the value of the 'processor2_temp' field.
-      * @param value The value of 'processor2_temp'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setProcessor2Temp(int value) {
-      validate(fields()[6], value);
-      this.processor2_temp = value;
-      fieldSetFlags()[6] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'processor2_temp' field has been set.
-      * @return True if the 'processor2_temp' field has been set, false otherwise.
-      */
-    public boolean hasProcessor2Temp() {
-      return fieldSetFlags()[6];
-    }
-
-
-    /**
-      * Clears the value of the 'processor2_temp' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearProcessor2Temp() {
-      fieldSetFlags()[6] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'processor3_temp' field.
-      * @return The value.
-      */
-    public int getProcessor3Temp() {
-      return processor3_temp;
-    }
-
-
-    /**
-      * Sets the value of the 'processor3_temp' field.
-      * @param value The value of 'processor3_temp'.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder setProcessor3Temp(int value) {
-      validate(fields()[7], value);
-      this.processor3_temp = value;
-      fieldSetFlags()[7] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'processor3_temp' field has been set.
-      * @return True if the 'processor3_temp' field has been set, false otherwise.
-      */
-    public boolean hasProcessor3Temp() {
-      return fieldSetFlags()[7];
-    }
-
-
-    /**
-      * Clears the value of the 'processor3_temp' field.
-      * @return This builder.
-      */
-    public avro.BatteryEvent.Builder clearProcessor3Temp() {
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[0] = false;
       return this;
     }
 
@@ -854,7 +612,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * Gets the value of the 'processor4_temp' field.
       * @return The value.
       */
-    public int getProcessor4Temp() {
+    public java.lang.Integer getProcessor4Temp() {
       return processor4_temp;
     }
 
@@ -864,10 +622,10 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'processor4_temp'.
       * @return This builder.
       */
-    public avro.BatteryEvent.Builder setProcessor4Temp(int value) {
-      validate(fields()[8], value);
+    public avro.BatteryEvent.Builder setProcessor4Temp(java.lang.Integer value) {
+      validate(fields()[1], value);
       this.processor4_temp = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -876,7 +634,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return True if the 'processor4_temp' field has been set, false otherwise.
       */
     public boolean hasProcessor4Temp() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[1];
     }
 
 
@@ -885,7 +643,208 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return This builder.
       */
     public avro.BatteryEvent.Builder clearProcessor4Temp() {
-      fieldSetFlags()[8] = false;
+      processor4_temp = null;
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'device_id' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getDeviceId() {
+      return device_id;
+    }
+
+
+    /**
+      * Sets the value of the 'device_id' field.
+      * @param value The value of 'device_id'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setDeviceId(java.lang.CharSequence value) {
+      validate(fields()[2], value);
+      this.device_id = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'device_id' field has been set.
+      * @return True if the 'device_id' field has been set, false otherwise.
+      */
+    public boolean hasDeviceId() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'device_id' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearDeviceId() {
+      device_id = null;
+      fieldSetFlags()[2] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'processor2_temp' field.
+      * @return The value.
+      */
+    public java.lang.Integer getProcessor2Temp() {
+      return processor2_temp;
+    }
+
+
+    /**
+      * Sets the value of the 'processor2_temp' field.
+      * @param value The value of 'processor2_temp'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setProcessor2Temp(java.lang.Integer value) {
+      validate(fields()[3], value);
+      this.processor2_temp = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'processor2_temp' field has been set.
+      * @return True if the 'processor2_temp' field has been set, false otherwise.
+      */
+    public boolean hasProcessor2Temp() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'processor2_temp' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearProcessor2Temp() {
+      processor2_temp = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'processor1_temp' field.
+      * @return The value.
+      */
+    public java.lang.Integer getProcessor1Temp() {
+      return processor1_temp;
+    }
+
+
+    /**
+      * Sets the value of the 'processor1_temp' field.
+      * @param value The value of 'processor1_temp'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setProcessor1Temp(java.lang.Integer value) {
+      validate(fields()[4], value);
+      this.processor1_temp = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'processor1_temp' field has been set.
+      * @return True if the 'processor1_temp' field has been set, false otherwise.
+      */
+    public boolean hasProcessor1Temp() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'processor1_temp' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearProcessor1Temp() {
+      processor1_temp = null;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'charging' field.
+      * @return The value.
+      */
+    public java.lang.Integer getCharging() {
+      return charging;
+    }
+
+
+    /**
+      * Sets the value of the 'charging' field.
+      * @param value The value of 'charging'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setCharging(java.lang.Integer value) {
+      validate(fields()[5], value);
+      this.charging = value;
+      fieldSetFlags()[5] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'charging' field has been set.
+      * @return True if the 'charging' field has been set, false otherwise.
+      */
+    public boolean hasCharging() {
+      return fieldSetFlags()[5];
+    }
+
+
+    /**
+      * Clears the value of the 'charging' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearCharging() {
+      charging = null;
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'current_capacity' field.
+      * @return The value.
+      */
+    public java.lang.Integer getCurrentCapacity() {
+      return current_capacity;
+    }
+
+
+    /**
+      * Sets the value of the 'current_capacity' field.
+      * @param value The value of 'current_capacity'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setCurrentCapacity(java.lang.Integer value) {
+      validate(fields()[6], value);
+      this.current_capacity = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'current_capacity' field has been set.
+      * @return True if the 'current_capacity' field has been set, false otherwise.
+      */
+    public boolean hasCurrentCapacity() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'current_capacity' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearCurrentCapacity() {
+      current_capacity = null;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -893,7 +852,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * Gets the value of the 'inverter_state' field.
       * @return The value.
       */
-    public int getInverterState() {
+    public java.lang.Integer getInverterState() {
       return inverter_state;
     }
 
@@ -903,10 +862,10 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'inverter_state'.
       * @return This builder.
       */
-    public avro.BatteryEvent.Builder setInverterState(int value) {
-      validate(fields()[9], value);
+    public avro.BatteryEvent.Builder setInverterState(java.lang.Integer value) {
+      validate(fields()[7], value);
       this.inverter_state = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -915,7 +874,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return True if the 'inverter_state' field has been set, false otherwise.
       */
     public boolean hasInverterState() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[7];
     }
 
 
@@ -924,46 +883,168 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return This builder.
       */
     public avro.BatteryEvent.Builder clearInverterState() {
+      inverter_state = null;
+      fieldSetFlags()[7] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'moduleL_temp' field.
+      * @return The value.
+      */
+    public java.lang.Integer getModuleLTemp() {
+      return moduleL_temp;
+    }
+
+
+    /**
+      * Sets the value of the 'moduleL_temp' field.
+      * @param value The value of 'moduleL_temp'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setModuleLTemp(java.lang.Integer value) {
+      validate(fields()[8], value);
+      this.moduleL_temp = value;
+      fieldSetFlags()[8] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'moduleL_temp' field has been set.
+      * @return True if the 'moduleL_temp' field has been set, false otherwise.
+      */
+    public boolean hasModuleLTemp() {
+      return fieldSetFlags()[8];
+    }
+
+
+    /**
+      * Clears the value of the 'moduleL_temp' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearModuleLTemp() {
+      moduleL_temp = null;
+      fieldSetFlags()[8] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'moduleR_temp' field.
+      * @return The value.
+      */
+    public java.lang.Integer getModuleRTemp() {
+      return moduleR_temp;
+    }
+
+
+    /**
+      * Sets the value of the 'moduleR_temp' field.
+      * @param value The value of 'moduleR_temp'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setModuleRTemp(java.lang.Integer value) {
+      validate(fields()[9], value);
+      this.moduleR_temp = value;
+      fieldSetFlags()[9] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'moduleR_temp' field has been set.
+      * @return True if the 'moduleR_temp' field has been set, false otherwise.
+      */
+    public boolean hasModuleRTemp() {
+      return fieldSetFlags()[9];
+    }
+
+
+    /**
+      * Clears the value of the 'moduleR_temp' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearModuleRTemp() {
+      moduleR_temp = null;
       fieldSetFlags()[9] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'SoC_regulator' field.
+      * Gets the value of the 'processor3_temp' field.
       * @return The value.
       */
-    public float getSoCRegulator() {
-      return SoC_regulator;
+    public java.lang.Integer getProcessor3Temp() {
+      return processor3_temp;
     }
 
 
     /**
-      * Sets the value of the 'SoC_regulator' field.
-      * @param value The value of 'SoC_regulator'.
+      * Sets the value of the 'processor3_temp' field.
+      * @param value The value of 'processor3_temp'.
       * @return This builder.
       */
-    public avro.BatteryEvent.Builder setSoCRegulator(float value) {
+    public avro.BatteryEvent.Builder setProcessor3Temp(java.lang.Integer value) {
       validate(fields()[10], value);
-      this.SoC_regulator = value;
+      this.processor3_temp = value;
       fieldSetFlags()[10] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'SoC_regulator' field has been set.
-      * @return True if the 'SoC_regulator' field has been set, false otherwise.
+      * Checks whether the 'processor3_temp' field has been set.
+      * @return True if the 'processor3_temp' field has been set, false otherwise.
       */
-    public boolean hasSoCRegulator() {
+    public boolean hasProcessor3Temp() {
       return fieldSetFlags()[10];
     }
 
 
     /**
-      * Clears the value of the 'SoC_regulator' field.
+      * Clears the value of the 'processor3_temp' field.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder clearProcessor3Temp() {
+      processor3_temp = null;
+      fieldSetFlags()[10] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'soC_regulator' field.
+      * @return The value.
+      */
+    public java.lang.Float getSoCRegulator() {
+      return soC_regulator;
+    }
+
+
+    /**
+      * Sets the value of the 'soC_regulator' field.
+      * @param value The value of 'soC_regulator'.
+      * @return This builder.
+      */
+    public avro.BatteryEvent.Builder setSoCRegulator(java.lang.Float value) {
+      validate(fields()[11], value);
+      this.soC_regulator = value;
+      fieldSetFlags()[11] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'soC_regulator' field has been set.
+      * @return True if the 'soC_regulator' field has been set, false otherwise.
+      */
+    public boolean hasSoCRegulator() {
+      return fieldSetFlags()[11];
+    }
+
+
+    /**
+      * Clears the value of the 'soC_regulator' field.
       * @return This builder.
       */
     public avro.BatteryEvent.Builder clearSoCRegulator() {
-      fieldSetFlags()[10] = false;
+      soC_regulator = null;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -982,9 +1063,9 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return This builder.
       */
     public avro.BatteryEvent.Builder setTime(java.lang.Long value) {
-      validate(fields()[11], value);
+      validate(fields()[12], value);
       this.time = value;
-      fieldSetFlags()[11] = true;
+      fieldSetFlags()[12] = true;
       return this;
     }
 
@@ -993,7 +1074,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       * @return True if the 'time' field has been set, false otherwise.
       */
     public boolean hasTime() {
-      return fieldSetFlags()[11];
+      return fieldSetFlags()[12];
     }
 
 
@@ -1003,7 +1084,7 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       */
     public avro.BatteryEvent.Builder clearTime() {
       time = null;
-      fieldSetFlags()[11] = false;
+      fieldSetFlags()[12] = false;
       return this;
     }
 
@@ -1012,18 +1093,19 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
     public BatteryEvent build() {
       try {
         BatteryEvent record = new BatteryEvent();
-        record.charging = fieldSetFlags()[0] ? this.charging : (java.lang.Integer) defaultValue(fields()[0]);
-        record.charging_source = fieldSetFlags()[1] ? this.charging_source : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.current_capacity = fieldSetFlags()[2] ? this.current_capacity : (java.lang.Integer) defaultValue(fields()[2]);
-        record.moduleL_temp = fieldSetFlags()[3] ? this.moduleL_temp : (java.lang.Integer) defaultValue(fields()[3]);
-        record.moduleR_temp = fieldSetFlags()[4] ? this.moduleR_temp : (java.lang.Integer) defaultValue(fields()[4]);
-        record.processor1_temp = fieldSetFlags()[5] ? this.processor1_temp : (java.lang.Integer) defaultValue(fields()[5]);
-        record.processor2_temp = fieldSetFlags()[6] ? this.processor2_temp : (java.lang.Integer) defaultValue(fields()[6]);
-        record.processor3_temp = fieldSetFlags()[7] ? this.processor3_temp : (java.lang.Integer) defaultValue(fields()[7]);
-        record.processor4_temp = fieldSetFlags()[8] ? this.processor4_temp : (java.lang.Integer) defaultValue(fields()[8]);
-        record.inverter_state = fieldSetFlags()[9] ? this.inverter_state : (java.lang.Integer) defaultValue(fields()[9]);
-        record.SoC_regulator = fieldSetFlags()[10] ? this.SoC_regulator : (java.lang.Float) defaultValue(fields()[10]);
-        record.time = fieldSetFlags()[11] ? this.time : (java.lang.Long) defaultValue(fields()[11]);
+        record.charging_source = fieldSetFlags()[0] ? this.charging_source : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.processor4_temp = fieldSetFlags()[1] ? this.processor4_temp : (java.lang.Integer) defaultValue(fields()[1]);
+        record.device_id = fieldSetFlags()[2] ? this.device_id : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.processor2_temp = fieldSetFlags()[3] ? this.processor2_temp : (java.lang.Integer) defaultValue(fields()[3]);
+        record.processor1_temp = fieldSetFlags()[4] ? this.processor1_temp : (java.lang.Integer) defaultValue(fields()[4]);
+        record.charging = fieldSetFlags()[5] ? this.charging : (java.lang.Integer) defaultValue(fields()[5]);
+        record.current_capacity = fieldSetFlags()[6] ? this.current_capacity : (java.lang.Integer) defaultValue(fields()[6]);
+        record.inverter_state = fieldSetFlags()[7] ? this.inverter_state : (java.lang.Integer) defaultValue(fields()[7]);
+        record.moduleL_temp = fieldSetFlags()[8] ? this.moduleL_temp : (java.lang.Integer) defaultValue(fields()[8]);
+        record.moduleR_temp = fieldSetFlags()[9] ? this.moduleR_temp : (java.lang.Integer) defaultValue(fields()[9]);
+        record.processor3_temp = fieldSetFlags()[10] ? this.processor3_temp : (java.lang.Integer) defaultValue(fields()[10]);
+        record.soC_regulator = fieldSetFlags()[11] ? this.soC_regulator : (java.lang.Float) defaultValue(fields()[11]);
+        record.time = fieldSetFlags()[12] ? this.time : (java.lang.Long) defaultValue(fields()[12]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -1056,27 +1138,101 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeInt(this.charging);
+    if (this.charging_source == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeString(this.charging_source);
+    }
 
-    out.writeString(this.charging_source);
+    if (this.processor4_temp == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.processor4_temp);
+    }
 
-    out.writeInt(this.current_capacity);
+    if (this.device_id == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeString(this.device_id);
+    }
 
-    out.writeInt(this.moduleL_temp);
+    if (this.processor2_temp == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.processor2_temp);
+    }
 
-    out.writeInt(this.moduleR_temp);
+    if (this.processor1_temp == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.processor1_temp);
+    }
 
-    out.writeInt(this.processor1_temp);
+    if (this.charging == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.charging);
+    }
 
-    out.writeInt(this.processor2_temp);
+    if (this.current_capacity == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.current_capacity);
+    }
 
-    out.writeInt(this.processor3_temp);
+    if (this.inverter_state == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.inverter_state);
+    }
 
-    out.writeInt(this.processor4_temp);
+    if (this.moduleL_temp == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.moduleL_temp);
+    }
 
-    out.writeInt(this.inverter_state);
+    if (this.moduleR_temp == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.moduleR_temp);
+    }
 
-    out.writeFloat(this.SoC_regulator);
+    if (this.processor3_temp == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeInt(this.processor3_temp);
+    }
+
+    if (this.soC_regulator == null) {
+      out.writeIndex(1);
+      out.writeNull();
+    } else {
+      out.writeIndex(0);
+      out.writeFloat(this.soC_regulator);
+    }
 
     if (this.time == null) {
       out.writeIndex(1);
@@ -1093,27 +1249,89 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.charging = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.charging_source = null;
+      } else {
+        this.charging_source = in.readString(this.charging_source instanceof Utf8 ? (Utf8)this.charging_source : null);
+      }
 
-      this.charging_source = in.readString(this.charging_source instanceof Utf8 ? (Utf8)this.charging_source : null);
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.processor4_temp = null;
+      } else {
+        this.processor4_temp = in.readInt();
+      }
 
-      this.current_capacity = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.device_id = null;
+      } else {
+        this.device_id = in.readString(this.device_id instanceof Utf8 ? (Utf8)this.device_id : null);
+      }
 
-      this.moduleL_temp = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.processor2_temp = null;
+      } else {
+        this.processor2_temp = in.readInt();
+      }
 
-      this.moduleR_temp = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.processor1_temp = null;
+      } else {
+        this.processor1_temp = in.readInt();
+      }
 
-      this.processor1_temp = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.charging = null;
+      } else {
+        this.charging = in.readInt();
+      }
 
-      this.processor2_temp = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.current_capacity = null;
+      } else {
+        this.current_capacity = in.readInt();
+      }
 
-      this.processor3_temp = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.inverter_state = null;
+      } else {
+        this.inverter_state = in.readInt();
+      }
 
-      this.processor4_temp = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.moduleL_temp = null;
+      } else {
+        this.moduleL_temp = in.readInt();
+      }
 
-      this.inverter_state = in.readInt();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.moduleR_temp = null;
+      } else {
+        this.moduleR_temp = in.readInt();
+      }
 
-      this.SoC_regulator = in.readFloat();
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.processor3_temp = null;
+      } else {
+        this.processor3_temp = in.readInt();
+      }
+
+      if (in.readIndex() != 0) {
+        in.readNull();
+        this.soC_regulator = null;
+      } else {
+        this.soC_regulator = in.readFloat();
+      }
 
       if (in.readIndex() != 0) {
         in.readNull();
@@ -1123,53 +1341,117 @@ public class BatteryEvent extends org.apache.avro.specific.SpecificRecordBase im
       }
 
     } else {
-      for (int i = 0; i < 12; i++) {
+      for (int i = 0; i < 13; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.charging = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.charging_source = null;
+          } else {
+            this.charging_source = in.readString(this.charging_source instanceof Utf8 ? (Utf8)this.charging_source : null);
+          }
           break;
 
         case 1:
-          this.charging_source = in.readString(this.charging_source instanceof Utf8 ? (Utf8)this.charging_source : null);
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.processor4_temp = null;
+          } else {
+            this.processor4_temp = in.readInt();
+          }
           break;
 
         case 2:
-          this.current_capacity = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.device_id = null;
+          } else {
+            this.device_id = in.readString(this.device_id instanceof Utf8 ? (Utf8)this.device_id : null);
+          }
           break;
 
         case 3:
-          this.moduleL_temp = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.processor2_temp = null;
+          } else {
+            this.processor2_temp = in.readInt();
+          }
           break;
 
         case 4:
-          this.moduleR_temp = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.processor1_temp = null;
+          } else {
+            this.processor1_temp = in.readInt();
+          }
           break;
 
         case 5:
-          this.processor1_temp = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.charging = null;
+          } else {
+            this.charging = in.readInt();
+          }
           break;
 
         case 6:
-          this.processor2_temp = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.current_capacity = null;
+          } else {
+            this.current_capacity = in.readInt();
+          }
           break;
 
         case 7:
-          this.processor3_temp = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.inverter_state = null;
+          } else {
+            this.inverter_state = in.readInt();
+          }
           break;
 
         case 8:
-          this.processor4_temp = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.moduleL_temp = null;
+          } else {
+            this.moduleL_temp = in.readInt();
+          }
           break;
 
         case 9:
-          this.inverter_state = in.readInt();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.moduleR_temp = null;
+          } else {
+            this.moduleR_temp = in.readInt();
+          }
           break;
 
         case 10:
-          this.SoC_regulator = in.readFloat();
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.processor3_temp = null;
+          } else {
+            this.processor3_temp = in.readInt();
+          }
           break;
 
         case 11:
+          if (in.readIndex() != 0) {
+            in.readNull();
+            this.soC_regulator = null;
+          } else {
+            this.soC_regulator = in.readFloat();
+          }
+          break;
+
+        case 12:
           if (in.readIndex() != 0) {
             in.readNull();
             this.time = null;
