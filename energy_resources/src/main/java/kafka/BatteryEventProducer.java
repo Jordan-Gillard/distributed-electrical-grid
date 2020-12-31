@@ -39,7 +39,7 @@ public class BatteryEventProducer {
         //create producer record
         GenericRecord avroRecord = buildRecord(batteryEvent);
 
-        ProducerRecord<Object, Object> record =
+        ProducerRecord<Integer, GenericRecord> record =
             new ProducerRecord<>("battery_event", 1, avroRecord);
         try {
             producer.send(record);
@@ -93,7 +93,7 @@ public class BatteryEventProducer {
         record.put("processor3_temp", batteryEvent.getProcessor3Temp());
         record.put("processor4_temp", batteryEvent.getProcessor4Temp());
         record.put("inverter_state", batteryEvent.getInverterState());
-        record.put("SoC_regulator", batteryEvent.getSoCRegulator());
+        record.put("soC_regulator", batteryEvent.getSoCRegulator());
 
 
         return record;
