@@ -10,9 +10,14 @@ services:
       MYSQL_ROOT_PASSWORD: example
     ports:
       - 3306:3306
+    volumes:
+      - databases-datavolume:/var/lib/mysql
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  databases-datavolume:
