@@ -6,8 +6,7 @@ import java.io.IOException;
 
 public class BatteryEventProducerTest {
 
-    @Test
-    public void testBuildRecordDoesNotThrowError() throws IOException {
+    @Test public void testBuildRecordDoesNotThrowError() throws IOException {
         BatteryEvent batteryEvent = new BatteryEvent();
         BatteryEventProducer.buildRecord(batteryEvent);
     }

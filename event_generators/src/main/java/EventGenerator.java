@@ -15,14 +15,14 @@ public class EventGenerator extends BaseGenerator {
     @Parameter(names = { "-n",
         "--num-devices" }, description = "Number of unique devices")
     protected int deviceCount = 1_000;
-    @Parameter(names = { "-e", "--max-events-per-request" },
-        description = "Maximum number of events per request")
+    @Parameter(names = { "-e",
+        "--max-events-per-request" }, description = "Maximum number of events per request")
     protected int maxEvents = 100;
     @Parameter(names = { "-b",
-        "--bad-events" }, description = "Corrupt the events")
-    private boolean badEvents;
-    @Parameter(names = { "-m", "--missing-region" },
-        description = "Events are missing the region identifier")
+        "--bad-events" }, description = "Corrupt the events") private boolean
+        badEvents;
+    @Parameter(names = { "-m",
+        "--missing-region" }, description = "Events are missing the region identifier")
     private boolean missingRegion;
 
     // setup devices and regions
@@ -69,8 +69,7 @@ public class EventGenerator extends BaseGenerator {
     }
 
 
-    @Override
-    public void nextEvent() throws Exception {
+    @Override public void nextEvent() throws Exception {
         UUID[] ids = deviceToRegion.keySet().toArray(new UUID[0]);
         UUID id = ids[r.nextInt(ids.length - 1)];
 
