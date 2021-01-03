@@ -26,8 +26,8 @@ Run the pricing generator
 ````
 
 Event generators can also be run with an optional `--seed` flag, that takes a
-long, to set the random seed used for generating events, enabling a
-reproducible stream of events.
+long, to set the random seed used for generating events, enabling a reproducible
+stream of events.
 
 See `--help` for more information.
 

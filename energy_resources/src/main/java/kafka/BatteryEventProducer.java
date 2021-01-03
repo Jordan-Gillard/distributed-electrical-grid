@@ -9,7 +9,6 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.errors.SerializationException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class BatteryEventProducer {
         //create producer record
         GenericRecord avroRecord = buildRecord(batteryEvent);
 
-        ProducerRecord<Object, Object> record =
+        ProducerRecord<Integer, GenericRecord> record =
             new ProducerRecord<>("battery_event", 1, avroRecord);
         try {
             producer.send(record);
@@ -47,7 +46,7 @@ public class BatteryEventProducer {
         }
         catch (Exception e) {
             // may need to do something with it
-            logger.log(Level.WARNING,e.toString());
+            logger.log(Level.WARNING, e.toString());
         }
         // When you're finished producing records, you can flush the producer to ensure it has all been written to Kafka and
         // then close the producer to free its resources.
@@ -73,8 +72,8 @@ public class BatteryEventProducer {
             schemaString =
                 IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         }
-        catch (Exception e){
-            logger.log(Level.WARNING,e.toString());
+        catch (Exception e) {
+            logger.log(Level.WARNING, e.toString());
         }
         finally {
             inputStream.close();
@@ -93,8 +92,7 @@ public class BatteryEventProducer {
         record.put("processor3_temp", batteryEvent.getProcessor3Temp());
         record.put("processor4_temp", batteryEvent.getProcessor4Temp());
         record.put("inverter_state", batteryEvent.getInverterState());
-        record.put("SoC_regulator", batteryEvent.getSoCRegulator());
-
+        record.put("soC_regulator", batteryEvent.getSoCRegulator());
 
         return record;
     }
