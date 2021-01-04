@@ -18,22 +18,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BatteryEventProducer {
+    private static final Logger logger =
+        Logger.getLogger("Battery Event Producer");
+
 
     public static void produce(BatteryEvent batteryEvent) throws IOException {
-        Logger logger = Logger.getLogger("Battery Event Producer");
-        final String bootstrapServers = "0.0.0.0:9092";
-
-        // Create producer properties
-        Properties properties = new Properties();
-        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-            "org.apache.kafka.common.serialization.IntegerSerializer");
-        properties
-            .put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-            io.confluent.kafka.serializers.KafkaAvroSerializer.class);
-        properties.put("schema.registry.url", "http://0.0.0.0:8081");
-        // create the producer
-        Producer producer = new KafkaProducer(properties);
+        Producer producer = getProducer();
 
         //create producer record
         GenericRecord avroRecord = buildRecord(batteryEvent);
@@ -57,11 +47,47 @@ public class BatteryEventProducer {
     }
 
 
+    private static Producer getProducer() {
+        final String bootstrapServers = "0.0.0.0:9092";
+
+        // Create producer properties
+        Properties properties = new Properties();
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+            "org.apache.kafka.common.serialization.IntegerSerializer");
+        properties
+            .put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+            io.confluent.kafka.serializers.KafkaAvroSerializer.class);
+        properties.put("schema.registry.url", "http://0.0.0.0:8081");
+        // create the producer
+        Producer producer = new KafkaProducer(properties);
+        return producer;
+    }
+
+
     public static GenericRecord buildRecord(BatteryEvent batteryEvent)
         throws IOException {
-        Logger logger = Logger.getLogger("Battery Event Producer");
         //  IOUtils ioUtils = new IOUtils();
         // avro schema avsc file path.
+        Schema schema = getSchema();
+        // generic record for page-view-event.
+        GenericData.Record record = new GenericData.Record(schema);
+        record.put("charging", batteryEvent.getCharging());
+        record.put("charging_source", batteryEvent.getChargingSource());
+        record.put("current_capacity", batteryEvent.getCurrentCapacity());
+        record.put("moduleL_temp", batteryEvent.getModuleLTemp());
+        record.put("moduleR_temp", batteryEvent.getModuleRTemp());
+        record.put("processor1_temp", batteryEvent.getProcessor1Temp());
+        record.put("processor2_temp", batteryEvent.getProcessor2Temp());
+        record.put("processor3_temp", batteryEvent.getProcessor3Temp());
+        record.put("processor4_temp", batteryEvent.getProcessor4Temp());
+        record.put("inverter_state", batteryEvent.getInverterState());
+        record.put("soC_regulator", batteryEvent.getSoCRegulator());
+
+        return record;
+    }
+
+    private static Schema getSchema() throws IOException {
         String schemaPath =
             "energy_resources/src/main/resources/avro/BatteryEvent.avsc";
         // avsc json string.
@@ -80,21 +106,7 @@ public class BatteryEventProducer {
         }
         // avro schema.
         Schema schema = new Schema.Parser().parse(schemaString);
-        // generic record for page-view-event.
-        GenericData.Record record = new GenericData.Record(schema);
-        record.put("charging", batteryEvent.getCharging());
-        record.put("charging_source", batteryEvent.getChargingSource());
-        record.put("current_capacity", batteryEvent.getCurrentCapacity());
-        record.put("moduleL_temp", batteryEvent.getModuleLTemp());
-        record.put("moduleR_temp", batteryEvent.getModuleRTemp());
-        record.put("processor1_temp", batteryEvent.getProcessor1Temp());
-        record.put("processor2_temp", batteryEvent.getProcessor2Temp());
-        record.put("processor3_temp", batteryEvent.getProcessor3Temp());
-        record.put("processor4_temp", batteryEvent.getProcessor4Temp());
-        record.put("inverter_state", batteryEvent.getInverterState());
-        record.put("soC_regulator", batteryEvent.getSoCRegulator());
-
-        return record;
+        return schema;
     }
 }
 
