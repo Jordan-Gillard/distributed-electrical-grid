@@ -81,7 +81,7 @@
       ]
     },
     {
-      "name": "soC_regulator",
+      "name": "SoC_regulator",
       "type": [
         "float",
         "null"
