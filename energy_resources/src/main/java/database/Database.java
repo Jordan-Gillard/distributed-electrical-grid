@@ -21,7 +21,7 @@ public class Database {
                 + "processor1_temp int," + "charging int,"
                 + "current_capacity int," + "inverter_state int,"
                 + "moduleL_temp int," + "moduleR_temp int,"
-                + "processor3_temp int," + "soC_regulator float,"
+                + "processor3_temp int," + "SoC_regulator float,"
                 + "time timestamp," + "PRIMARY KEY (batteryEventID))";
         jdbi.useHandle(handle -> {
             handle.execute(dropBatteryEventTable);
