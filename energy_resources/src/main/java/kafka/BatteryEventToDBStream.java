@@ -8,6 +8,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Produced;
 
 import java.util.Collections;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class BatteryEventToDBStream {
     public static void main(String[] args) throws InterruptedException {
         Logger logger = Logger.getLogger("Battery Event Kafka Stream");
         Properties props = new Properties();
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "battery-event");
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "battery_event");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG,
             GenericAvroSerde.class);
@@ -38,10 +39,10 @@ public class BatteryEventToDBStream {
             .configure(serdeConfig, false); // `false` for record values
 
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<GenericRecord, GenericRecord> textLines = builder
-            .stream("battery-event",
+        KStream<GenericRecord, GenericRecord> batteryEventStream = builder
+            .stream("battery_event",
                 Consumed.with(keyGenericAvroSerde, valueGenericAvroSerde));
-
+        batteryEventStream.to("out-topic", Produced.with(keyGenericAvroSerde,valueGenericAvroSerde));
         StreamsConfig streamsConfig = new StreamsConfig(props);
         KafkaStreams kafkaStreams =
             new KafkaStreams(builder.build(), streamsConfig);
