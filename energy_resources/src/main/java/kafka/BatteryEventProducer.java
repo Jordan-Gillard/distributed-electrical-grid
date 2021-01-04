@@ -82,7 +82,7 @@ public class BatteryEventProducer {
         record.put("processor3_temp", batteryEvent.getProcessor3Temp());
         record.put("processor4_temp", batteryEvent.getProcessor4Temp());
         record.put("inverter_state", batteryEvent.getInverterState());
-        record.put("soC_regulator", batteryEvent.getSoCRegulator());
+        record.put("SoC_regulator", batteryEvent.getSoCRegulator());
 
         return record;
     }

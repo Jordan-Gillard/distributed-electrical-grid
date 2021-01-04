@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: '3.1'
 
 services:
   zookeeper:
@@ -19,7 +19,7 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - "29092:29092"
+      - "9092:29092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -42,8 +42,28 @@ services:
       - zookeeper
       - broker
     ports:
-      - "8090:8081"
+      - "8081:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
       SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: WARN
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example1
+    ports:
+      - 3306:3306
+    volumes:
+      - databases-datavolume:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9123:8080
+
+volumes:
+  databases-datavolume:
