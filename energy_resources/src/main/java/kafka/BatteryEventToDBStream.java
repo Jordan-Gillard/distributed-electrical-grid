@@ -31,6 +31,7 @@ public class BatteryEventToDBStream {
 
         final Map<String, String> serdeConfig = Collections
             .singletonMap("schema.registry.url", "http://0.0.0.0:8081");
+
         final Serde<Integer> keyIntegerSerde = Serdes.Integer();
         keyIntegerSerde
             .configure(serdeConfig, true); // `true` for record keys
@@ -43,7 +44,9 @@ public class BatteryEventToDBStream {
         KStream<Integer, GenericRecord> batteryEventStream = builder
             .stream("battery_event",
                 Consumed.with(keyIntegerSerde, valueGenericAvroSerde));
-        batteryEventStream.to("battery_event", Produced.with(keyIntegerSerde,valueGenericAvroSerde));
+        batteryEventStream.to("battery_event", Produced
+            .with(keyIntegerSerde,valueGenericAvroSerde));
+
         StreamsConfig streamsConfig = new StreamsConfig(props);
         KafkaStreams kafkaStreams =
             new KafkaStreams(builder.build(), streamsConfig);

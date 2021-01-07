@@ -15,16 +15,15 @@
     <packaging>pom</packaging>
 
     <properties>
-        <!--        <springboot.startertest.version>2.4.1</springboot.startertest.version>-->
         <avro.version>1.10.1</avro.version>
 
     </properties>
     <repositories>
         <repository>
-           <id>red-hat-early-access</id>
+            <id>red-hat-early-access</id>
             <name>Red Hat</name>
             <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
-            </repository>
+        </repository>
         <repository>
             <id>confluent</id>
             <name>kafka-stream-serde</name>
@@ -108,12 +107,18 @@
             <artifactId>jdbi3-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-core</artifactId>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.22</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -132,7 +137,7 @@
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-                <version>1.10.1</version>
+                <version>1.8.2</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -140,8 +145,11 @@
                             <goal>schema</goal>
                         </goals>
                         <configuration>
-                            <sourceDirectory>src/main/resources/avro</sourceDirectory>
-                            <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                            <sourceDirectory>src/main/resources/avro
+                            </sourceDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/generated-sources
+                            </outputDirectory>
                             <stringType>String</stringType>
                         </configuration>
                     </execution>

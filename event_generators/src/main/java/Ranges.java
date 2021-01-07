@@ -7,7 +7,6 @@ public class Ranges {
         return r.nextInt(width) + lower;
     }
 
-
     static float floatInRange(Random r, Float lower, Float upper) {
         float width = Math.abs(lower - upper);
         float percent = r.nextFloat();

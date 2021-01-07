@@ -9,8 +9,8 @@ public class Database {
     static final String USER = "root";
     static final String PASS = "example1";
 
-    public static void createEmptyBatteryEventTable() {
-        Jdbi jdbi = getJdbiConnectorWithDataSource();
+    public static void createEmptyBatteryEventTable(Jdbi jdbi) {
+
         String dropBatteryEventTable = "DROP TABLE IF EXISTS batteryEvent";
         String createBatteryEventTable =
             "CREATE TABLE IF NOT EXISTS batteryEvent "
@@ -26,7 +26,6 @@ public class Database {
             handle.execute(dropBatteryEventTable);
             handle.execute(createBatteryEventTable);
         });
-
     }
 
 
