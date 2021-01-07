@@ -6,15 +6,17 @@ public class Generator {
 
     public static final String EVENTS = "events";
     public static final String PRICING = "pricing";
-    @Parameter(names = "--help", help = true) private boolean help;
-
+    @Parameter(names = "--help", help = true)
+    private boolean help;
 
     public static void main(String[] args) throws Exception {
         Generator main = new Generator();
         EventGenerator deviceEvents = new EventGenerator();
         PricingGenerator pricingEvents = new PricingGenerator();
-        JCommander jc = JCommander.newBuilder().addObject(main)
-            .addCommand(EVENTS, deviceEvents).addCommand(PRICING, pricingEvents)
+        JCommander jc = JCommander.newBuilder()
+            .addObject(main)
+            .addCommand(EVENTS, deviceEvents)
+            .addCommand(PRICING, pricingEvents)
             .build();
         try {
             jc.parse(args);
@@ -29,17 +31,14 @@ public class Generator {
             }
             if (command.equals(EVENTS)) {
                 deviceEvents.run();
-            }
-            else if (command.equals(PRICING)) {
+            } else if (command.equals(PRICING)) {
                 pricingEvents.run();
-            }
-            else {
+            } else {
                 System.out.println("Unrecognized command: " + command);
                 jc.usage();
                 System.exit(2);
             }
-        }
-        catch (ParameterException e) {
+        } catch (ParameterException e) {
             System.out.println(e.getMessage());
             jc.usage();
             System.exit(1);
