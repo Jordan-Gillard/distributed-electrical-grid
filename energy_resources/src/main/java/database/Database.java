@@ -2,6 +2,10 @@ package database;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.argument.Arguments;
+import org.jdbi.v3.core.argument.NullArgument;
+
+import java.sql.Types;
 
 public class Database {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -31,7 +35,9 @@ public class Database {
 
     public static Jdbi getJdbiConnectorWithDataSource() {
         BasicDataSource dataSource = getBasicDataSource();
+
         return Jdbi.create(dataSource);
+
     }
 
 
