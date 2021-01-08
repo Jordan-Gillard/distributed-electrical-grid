@@ -81,7 +81,6 @@ public class BatteryEventProducer {
         }
         // avro schema.
         Schema schema = new Schema.Parser().parse(schemaString);
-        // generic record for page-view-event.
         GenericData.Record record = new GenericData.Record(schema);
         record.put("charging", batteryEvent.getCharging());
         record.put("charging_source", batteryEvent.getChargingSource());

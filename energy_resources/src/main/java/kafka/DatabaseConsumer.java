@@ -1,14 +1,13 @@
 package kafka;
 
+import avro.BatteryEvent;
 import database.Database;
-import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.jdbi.v3.core.Jdbi;
-
 
 import java.time.Duration;
 import java.util.Collections;
@@ -36,28 +35,52 @@ public class DatabaseConsumer {
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties
             .setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        properties.put("specific.avro.reader", "true");
         properties.put("schema.registry.url", "http://0.0.0.0:8081");
         //create consumer
-        KafkaConsumer<Integer, GenericRecord> consumer = new KafkaConsumer<Integer, GenericRecord>(properties);
+        KafkaConsumer<Integer, BatteryEvent> consumer =
+            new KafkaConsumer<>(properties);
 
         // subscribe consumer to our topic(s)
         consumer.subscribe(Collections.singleton(topic));
         // subscribe several topics we can use Array.asList();
 
         //poll for new data
-        while(true){
-            ConsumerRecords<Integer, GenericRecord> records =
-                consumer.poll(Duration.ofMillis(100));
-            for(ConsumerRecord record : records){
-                logger.info("Key: " + record.key() + ", Value: " + record.value());
-                logger.info("Partition:" + record. partition() + ", Offset:" + record.offset());
-                jdbi.useHandle(handle ->
-                    handle.createUpdate("insert into batteryEvent ( charging_source,processor4_temp,device_id,processor2_temp,processor1_temp,charging,current_capacity,inverter_state,moduleL_temp,moduleR_temp,processor3_temp,SoC_regulator,time) " +
-                        "values (:charging_source,:processor4_temp,:device_id,:processor2_temp,:processor1_temp,:charging,:current_capacity,:inverter_state,:moduleL_temp,:moduleR_temp,:processor3_temp,:SoC_regulator,:time)").
-                        bindBean(record.value())
-                );
+        try {
+            while (true) {
+                ConsumerRecords<Integer, BatteryEvent> records =
+                    consumer.poll(Duration.ofMillis(10000));
+                for (ConsumerRecord<Integer, BatteryEvent> record : records) {
+                    logger.info(
+                        "Key: " + record.key() + ", Value: " + record.value());
+                    logger.info(
+                        "Partition:" + record.partition() + ", Offset:" + record
+                            .offset());
+                    jdbi.useHandle(handle -> {
+                        handle.execute(
+                            "insert into batteryEvent (charging_source,processor4_temp,device_id,processor2_temp,processor1_temp,charging,current_capacity,inverter_state,moduleL_temp,moduleR_temp,processor3_temp,SoC_regulator,time) values (?, ?,?,?,?,?,?, ?,?,?,?,?,?)",
+                            record.value().getChargingSource(),
+                            record.value().getProcessor4Temp(),
+                            record.value().getDeviceId(),
+                            record.value().getProcessor2Temp(),
+                            record.value().getProcessor1Temp(),
+                            record.value().getCharging(),
+                            record.value().getCurrentCapacity(),
+                            record.value().getInverterState(),
+                            record.value().getModuleLTemp(),
+                            record.value().getModuleRTemp(),
+                            record.value().getProcessor3Temp(),
+                            record.value().getSoCRegulator(),
+                            record.value().getTime());
 
+                    });
+
+                }
             }
+        }
+        finally {
+
+            consumer.close();
         }
 
     }

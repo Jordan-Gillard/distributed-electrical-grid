@@ -15,7 +15,7 @@ public class EnergyResourcesController {
         @PathVariable("uuid") String uuid,
         @RequestBody BatteryEvent batteryEvent) throws IOException {
         batteryEvent.setTime(date.getTime());
-      BatteryEventProducer.produce(batteryEvent);
+        BatteryEventProducer.produce(batteryEvent);
         return batteryEvent;
     }
 }

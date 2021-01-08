@@ -26,6 +26,8 @@ public class Database {
         jdbi.useHandle(handle -> {
             handle.execute(dropBatteryEventTable);
             handle.execute(createBatteryEventTable);
+
+
         });
     }
 
