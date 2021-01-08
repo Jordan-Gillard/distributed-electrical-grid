@@ -58,7 +58,7 @@ public class DatabaseConsumer {
                             .offset());
                     jdbi.useHandle(handle -> {
                         handle.execute(
-                            "insert into batteryEvent (charging_source,processor4_temp,device_id,processor2_temp,processor1_temp,charging,current_capacity,inverter_state,moduleL_temp,moduleR_temp,processor3_temp,SoC_regulator,time) values (?, ?,?,?,?,?,?, ?,?,?,?,?,?)",
+                            "insert into batteryEvent (charging_source,processor4_temp,device_id,processor2_temp,processor1_temp,charging,current_capacity,inverter_state,moduleL_temp,moduleR_temp,processor3_temp,SoC_regulator) values (?, ?,?,?,?,?,?, ?,?,?,?,?)",
                             record.value().getChargingSource(),
                             record.value().getProcessor4Temp(),
                             record.value().getDeviceId(),
@@ -70,8 +70,8 @@ public class DatabaseConsumer {
                             record.value().getModuleLTemp(),
                             record.value().getModuleRTemp(),
                             record.value().getProcessor3Temp(),
-                            record.value().getSoCRegulator(),
-                            record.value().getTime());
+                            record.value().getSoCRegulator());
+
 
                     });
 

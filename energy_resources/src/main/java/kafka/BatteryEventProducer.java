@@ -82,6 +82,8 @@ public class BatteryEventProducer {
         // avro schema.
         Schema schema = new Schema.Parser().parse(schemaString);
         GenericData.Record record = new GenericData.Record(schema);
+        record.put("device_id",batteryEvent.getDeviceId());
+//        record.put("time", batteryEvent.getTime());
         record.put("charging", batteryEvent.getCharging());
         record.put("charging_source", batteryEvent.getChargingSource());
         record.put("current_capacity", batteryEvent.getCurrentCapacity());
