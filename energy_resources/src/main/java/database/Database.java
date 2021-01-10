@@ -11,22 +11,17 @@ public class Database {
 
 
     public static void createEmptyBatteryEventTable(Jdbi jdbi) {
-
         String dropBatteryEventTable = "DROP TABLE IF EXISTS batteryEvent";
-        String createBatteryEventTable =
+        String dropChargingEventTable = "DROP TABLE IF EXISTS chargingEvent";
+        String createChargingEventTable =
             "CREATE TABLE IF NOT EXISTS batteryEvent "
-                + "(batteryEventID INTEGER AUTO_INCREMENT,"
-                + "charging_source VARCHAR(255)," + "processor4_temp int,"
-                + "device_id VARCHAR(255)," + "processor2_temp int,"
-                + "processor1_temp int," + "charging int,"
-                + "current_capacity int," + "inverter_state int,"
-                + "moduleL_temp int," + "moduleR_temp int,"
-                + "processor3_temp int," + "SoC_regulator float,"
-                + "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," + "PRIMARY KEY (batteryEventID))";
+                + "(chargingEventID INTEGER AUTO_INCREMENT,"
+                + "device_id VARCHAR(255),"  + "charging int,"
+                + "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," + "PRIMARY KEY (chargingEventID))";
         jdbi.useHandle(handle -> {
             handle.execute(dropBatteryEventTable);
-            handle.execute(createBatteryEventTable);
-
+            handle.execute(dropChargingEventTable);
+            handle.execute(createChargingEventTable);
 
         });
     }

@@ -1,6 +1,6 @@
 package kafka;
 
-import avro.BatteryEvent;
+import avro.ChargingEvent;
 import database.Database;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -22,7 +22,7 @@ public class DatabaseConsumer {
         Database.createEmptyBatteryEventTable(jdbi);
         String bootstrapServers = "127.0.0.1:9092";
         String groupId = "my-fourth-application";
-        String topic = "battery_event";
+        String topic = "charging_event";
 
         //create consumer configs
         Properties properties = new Properties();
@@ -38,7 +38,7 @@ public class DatabaseConsumer {
         properties.put("specific.avro.reader", "true");
         properties.put("schema.registry.url", "http://0.0.0.0:8081");
         //create consumer
-        KafkaConsumer<Integer, BatteryEvent> consumer =
+        KafkaConsumer<Integer, ChargingEvent> consumer =
             new KafkaConsumer<>(properties);
 
         // subscribe consumer to our topic(s)
@@ -48,9 +48,9 @@ public class DatabaseConsumer {
         //poll for new data
         try {
             while (true) {
-                ConsumerRecords<Integer, BatteryEvent> records =
+                ConsumerRecords<Integer, ChargingEvent> records =
                     consumer.poll(Duration.ofMillis(10000));
-                for (ConsumerRecord<Integer, BatteryEvent> record : records) {
+                for (ConsumerRecord<Integer, ChargingEvent> record : records) {
                     logger.info(
                         "Key: " + record.key() + ", Value: " + record.value());
                     logger.info(
@@ -58,21 +58,9 @@ public class DatabaseConsumer {
                             .offset());
                     jdbi.useHandle(handle -> {
                         handle.execute(
-                            "insert into batteryEvent (charging_source,processor4_temp,device_id,processor2_temp,processor1_temp,charging,current_capacity,inverter_state,moduleL_temp,moduleR_temp,processor3_temp,SoC_regulator) values (?, ?,?,?,?,?,?, ?,?,?,?,?)",
-                            record.value().getChargingSource(),
-                            record.value().getProcessor4Temp(),
+                            "insert into batteryEvent (device_id,charging) values (?, ?)",
                             record.value().getDeviceId(),
-                            record.value().getProcessor2Temp(),
-                            record.value().getProcessor1Temp(),
-                            record.value().getCharging(),
-                            record.value().getCurrentCapacity(),
-                            record.value().getInverterState(),
-                            record.value().getModuleLTemp(),
-                            record.value().getModuleRTemp(),
-                            record.value().getProcessor3Temp(),
-                            record.value().getSoCRegulator());
-
-
+                            record.value().getCharging());
                     });
 
                 }

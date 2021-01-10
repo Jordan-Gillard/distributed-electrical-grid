@@ -1,7 +1,16 @@
 package kafka;
 
-import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde;
+import avro.BatteryEvent;
+
+import avro.ChargingEvent;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import org.apache.avro.Schema;
+import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.specific.SpecificData;
+import org.apache.avro.specific.SpecificRecord;
+import org.apache.commons.io.IOUtils;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
@@ -11,9 +20,13 @@ import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BatteryEventToDBStream {
@@ -26,7 +39,7 @@ public class BatteryEventToDBStream {
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG,
             Serdes.Integer().getClass().getName());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG,
-            GenericAvroSerde.class);
+            SpecificAvroSerde.class);
         props.put("schema.registry.url", "http://0.0.0.0:8081");
 
         final Map<String, String> serdeConfig = Collections
@@ -34,16 +47,22 @@ public class BatteryEventToDBStream {
         final Serde<Integer> keyIntegerSerde = Serdes.Integer();
         keyIntegerSerde
             .configure(serdeConfig, true); // `true` for record keys
-        final Serde<GenericRecord> valueGenericAvroSerde =
-            new GenericAvroSerde();
-        valueGenericAvroSerde
-            .configure(serdeConfig, true); // `false` for record values
+
+        final Serde<BatteryEvent> batteryEventSerde =
+            new SpecificAvroSerde<>();
+        batteryEventSerde.configure(serdeConfig, false);
+
+        final Serde<ChargingEvent> chargingEventSerde =
+            new SpecificAvroSerde<>();
+        chargingEventSerde.configure(serdeConfig, false);
 
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<Integer, GenericRecord> batteryEventStream = builder
+        KStream<Integer, BatteryEvent> batteryEventStream = builder
             .stream("battery_event",
-                Consumed.with(keyIntegerSerde, valueGenericAvroSerde));
-        batteryEventStream.to("battery_event", Produced.with(keyIntegerSerde,valueGenericAvroSerde));
+                Consumed.with(keyIntegerSerde, batteryEventSerde));
+        KStream<Integer, ChargingEvent> chargingStream = batteryEventStream.mapValues(batteryEvent-> new ChargingEvent(batteryEvent.getDeviceId(),batteryEvent.getCharging()));
+
+        chargingStream.to("charging_event", Produced.with(keyIntegerSerde,chargingEventSerde));
         StreamsConfig streamsConfig = new StreamsConfig(props);
         KafkaStreams kafkaStreams =
             new KafkaStreams(builder.build(), streamsConfig);
