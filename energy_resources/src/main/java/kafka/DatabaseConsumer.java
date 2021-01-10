@@ -72,7 +72,6 @@ public class DatabaseConsumer {
                             record.value().getProcessor3Temp(),
                             record.value().getSoCRegulator());
 
-
                     });
 
                 }

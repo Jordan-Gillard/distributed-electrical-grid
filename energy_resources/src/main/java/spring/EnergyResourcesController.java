@@ -23,8 +23,10 @@ public class EnergyResourcesController {
 
 
     @PostMapping("/{uuid}") BatteryEvent postBatteryEvent(
-        @PathVariable("uuid") String uuid,
-        @RequestBody BatteryEvent batteryEvent) throws IOException {
+        @PathVariable("uuid")
+            String uuid,
+        @RequestBody
+            BatteryEvent batteryEvent) throws IOException {
         BatteryEventProducer.produce(batteryEvent);
         return batteryEvent;
     }
@@ -32,9 +34,9 @@ public class EnergyResourcesController {
 
     @GetMapping("/{uuid}")
     Optional<BatteryEvent> getBatteryEvent(
-        @PathVariable("uuid") String uuid
+        @PathVariable("uuid")
+            String uuid
     ) {
         return batteryEventRepository.findById(uuid);
-
     }
 }

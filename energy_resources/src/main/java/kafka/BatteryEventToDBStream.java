@@ -43,7 +43,8 @@ public class BatteryEventToDBStream {
         KStream<Integer, GenericRecord> batteryEventStream = builder
             .stream("battery_event",
                 Consumed.with(keyIntegerSerde, valueGenericAvroSerde));
-        batteryEventStream.to("battery_event", Produced.with(keyIntegerSerde,valueGenericAvroSerde));
+        batteryEventStream.to("battery_event",
+            Produced.with(keyIntegerSerde, valueGenericAvroSerde));
         StreamsConfig streamsConfig = new StreamsConfig(props);
         KafkaStreams kafkaStreams =
             new KafkaStreams(builder.build(), streamsConfig);

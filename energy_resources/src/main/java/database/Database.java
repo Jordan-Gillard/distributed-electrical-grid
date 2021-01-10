@@ -22,11 +22,11 @@ public class Database {
                 + "current_capacity int," + "inverter_state int,"
                 + "moduleL_temp int," + "moduleR_temp int,"
                 + "processor3_temp int," + "SoC_regulator float,"
-                + "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," + "PRIMARY KEY (batteryEventID))";
+                + "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                + "PRIMARY KEY (batteryEventID))";
         jdbi.useHandle(handle -> {
             handle.execute(dropBatteryEventTable);
             handle.execute(createBatteryEventTable);
-
 
         });
     }
