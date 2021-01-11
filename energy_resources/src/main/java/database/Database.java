@@ -14,10 +14,9 @@ public class Database {
         String dropBatteryEventTable = "DROP TABLE IF EXISTS batteryEvent";
         String dropChargingEventTable = "DROP TABLE IF EXISTS chargingEvent";
         String createChargingEventTable =
-            "CREATE TABLE IF NOT EXISTS batteryEvent "
-                + "(chargingEventID INTEGER AUTO_INCREMENT,"
-                + "device_id VARCHAR(255),"  + "charging int,"
-                + "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," + "PRIMARY KEY (chargingEventID))";
+            "CREATE TABLE IF NOT EXISTS chargingEvent "
+                + "(device_id VARCHAR(255),"  + "charging int,"
+                + "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," + "PRIMARY KEY (device_id))";
         jdbi.useHandle(handle -> {
             handle.execute(dropBatteryEventTable);
             handle.execute(dropChargingEventTable);
